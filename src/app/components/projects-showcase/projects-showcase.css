@@ -184,11 +184,31 @@
 }
 
 @media (max-width: 768px) {
+  .project-card {
+    height: 340px;
+    padding: 1.8rem;
+    border-radius: 14px;
+  }
+
   .project-info {
     max-width: 100%;
+    gap: 0.8rem;
+  }
+
+  .project-info h3 {
+    font-size: 2rem;
+  }
+
+  .project-info p {
+    font-size: 0.8rem;
   }
 
   .project-card::before {
-    background: linear-gradient(to top, rgba(5, 5, 7, 0.95) 0%, rgba(5, 5, 7, 0.8) 60%, rgba(5, 5, 7, 0.2) 100%);
+    background: linear-gradient(to top, rgba(5, 5, 7, 0.98) 0%, rgba(5, 5, 7, 0.75) 65%, rgba(5, 5, 7, 0.1) 100%);
+  }
+
+  .tech-tag, .tech-icon {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.7rem;
   }
 }

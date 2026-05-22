@@ -1,20 +1,18 @@
 <div class="bg-image"></div>
 
 <nav class="navbar animate-fade-in" [class.mobile-menu-open]="isMobileMenuOpen()">
-  <div class="logo"></div>
+  <a routerLink="/" class="logo" (click)="closeMobileMenu()"></a>
   <ul class="nav-links">
-    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">HOME</a><span
-        class="dot"></span></li>
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="closeMobileMenu()">HOME</a><span class="dot"></span></li>
     <li><a href="#" (click)="closeMobileMenu()">PORTFOLIO</a></li>
-    <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">CONTACT</a><span class="dot"></span></li>
+    <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">CONTACT</a><span
+        class="dot"></span></li>
   </ul>
   <div class="mobile-menu-btn" (click)="toggleMobileMenu()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="1"></circle>
-      <circle cx="12" cy="5" r="1"></circle>
-      <circle cx="12" cy="19" r="1"></circle>
-    </svg>
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
   </div>
 </nav>
 

@@ -27,7 +27,7 @@
 
 .name {
   font-family: var(--font-serif);
-  font-size: 7rem;
+  font-size: clamp(3.2rem, 12vw, 7rem);
   font-weight: 400;
   line-height: 1;
   margin: 0;
@@ -68,18 +68,49 @@
   transform: translateX(6px);
 }
 
-@media (max-width: 1024px) {
-  .name {
-    font-size: 6rem;
-  }
-}
-
 @media (max-width: 768px) {
-  .name {
-    font-size: 4rem;
+  .profile-header {
+    width: 100%;
+    align-items: stretch;
+    gap: 1.2rem;
+  }
+
+  .subtitle p {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
   }
 
   .bio {
     font-size: 1.1rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+
+  .connect-link {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.1rem 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-normal);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .connect-link svg {
+    margin-left: 0.5rem;
+    transition: transform var(--transition-normal);
+  }
+
+  .connect-link:active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 }

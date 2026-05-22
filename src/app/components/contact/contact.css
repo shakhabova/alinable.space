@@ -287,28 +287,94 @@
 @media (max-width: 1024px) {
   .contact-page {
     flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
   }
 
   .contact-left,
   .contact-right {
     max-width: 100%;
   }
+
+  .form-container {
+    margin-top: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
   .title {
-    font-size: 3rem;
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+    line-height: 1.15;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-socials {
+    gap: 0.75rem;
+  }
+
+  .social-row {
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    gap: 1rem;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .social-row .arrow {
+    width: 18px;
+    height: 18px;
   }
 
   .form-row {
     flex-direction: column;
+    gap: 1.2rem;
   }
 
   .form-container {
-    padding: 2rem 1.5rem;
+    padding: 2.25rem 1.5rem;
+  }
+
+  .form-input {
+    padding: 1.1rem 1.25rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    min-height: 54px;
+  }
+
+  .form-textarea {
+    min-height: 160px;
+  }
+
+  .form-input:focus {
+    border-color: rgba(93, 75, 143, 0.5);
+    background: rgba(93, 75, 143, 0.02);
+    box-shadow: 0 0 20px rgba(93, 75, 143, 0.25);
+  }
+
+  .submit-btn {
+    padding: 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    background: linear-gradient(90deg, rgba(93, 75, 143, 0.85) 0%, rgba(50, 40, 80, 0.85) 100%);
+    width: 100%;
+    margin-top: 1rem;
   }
 }
+
 
 .success-message {
   display: flex;
