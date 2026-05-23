@@ -1,0 +1,747 @@
+.portfolio-page {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  padding: 2rem 0;
+  min-height: 70vh;
+  position: relative;
+}
+
+/* Starry space background overlay */
+.portfolio-page::before {
+  content: '';
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  right: -5%;
+  bottom: -5%;
+  background-image: url('/stars.svg');
+  background-repeat: repeat;
+  background-size: 320px 320px;
+  opacity: 0.18; /* Extremely soft space dust */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glowing Cosmic Space Nebula */
+.portfolio-page::after {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 15%;
+  width: 500px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(144, 126, 181, 0.06) 0%, rgba(16, 185, 129, 0.03) 50%, rgba(0, 0, 0, 0) 100%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.portfolio-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Twinkling pulse for subtitle star */
+.animate-pulse-star {
+  animation: pulse-star-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes pulse-star-shimmer {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+    text-shadow: none;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(144, 126, 181, 0.5);
+  }
+}
+
+/* Decorative Cosmic Star Nodes */
+.cosmic-star {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  font-size: 0.95rem;
+  z-index: 1;
+  animation: star-float-glow 6s ease-in-out infinite;
+}
+
+.star-1 {
+  top: 6%;
+  right: 12%;
+  animation-delay: 0s;
+  color: rgba(144, 126, 181, 0.35); /* Soft desaturated lavender star */
+  font-size: 1.1rem;
+}
+
+.star-2 {
+  top: 24%;
+  left: 6%;
+  animation-delay: 2s;
+  color: rgba(16, 185, 129, 0.25); /* Soft desaturated emerald star */
+  font-size: 0.85rem;
+}
+
+.star-3 {
+  top: 48%;
+  right: 6%;
+  animation-delay: 4s;
+  color: rgba(245, 158, 11, 0.25); /* Soft desaturated amber star */
+  font-size: 1rem;
+}
+
+@keyframes star-float-glow {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-8px) scale(1.2);
+    opacity: 0.7;
+    text-shadow: 0 0 8px currentColor;
+  }
+}
+
+.subtitle {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.star {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.subtitle p {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 10vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.title em {
+  font-style: italic;
+}
+
+.description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Widescreen Projects Showcase */
+.projects-showcase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+  width: 100%;
+}
+
+.showcase-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  width: 100%;
+  min-height: 440px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+/* Alternating columns */
+.showcase-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* Row Background Glow */
+.showcase-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+  filter: blur(100px);
+}
+
+.showcase-row:hover .showcase-glow {
+  opacity: 0.75;
+}
+
+.theme-tonio .showcase-glow {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.theme-coinforge .showcase-glow {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0) 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.theme-valut .showcase-glow {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
+  top: -100px;
+  right: -100px;
+}
+
+/* Text details column */
+.showcase-details {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  justify-content: center;
+  z-index: 2;
+  text-align: left;
+}
+
+.project-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.25em;
+  font-family: monospace;
+}
+
+.project-subtitle {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: -0.4rem;
+}
+
+.project-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 0.2rem;
+}
+
+.tech-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  background: rgba(15, 15, 20, 0.3);
+  border-radius: 6px;
+}
+
+.project-cta-button {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.85rem 1.6rem;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.project-cta-button:hover {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.project-cta-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.cta-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.cta-arrow {
+  transition: transform 0.3s ease;
+}
+
+.project-cta-button:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* CSS Mockup visual column */
+.showcase-visual {
+  flex: 1.2;
+  min-width: 360px;
+  height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: rgba(8, 8, 12, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  z-index: 2;
+}
+
+.showcase-row:hover .showcase-visual {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Mockup Common Styles */
+.mockup-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.mockup-grid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 1. Tonio World (Fintech Visuals: Browser Screenshot Frame) */
+.tonio-screenshot-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 15, 0.7);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  transform: none;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.showcase-row:hover .tonio-screenshot-frame {
+  transform: scale(1.03);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.15), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.frame-header {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 0.8rem;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.frame-dots {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.frame-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.frame-search-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 5px;
+  padding: 0.15rem 1.5rem;
+  border: 1px solid var(--border-color);
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+
+.frame-body {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.tonio-project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  animation: auto-scroll-image 16s ease-in-out infinite;
+}
+
+.showcase-row:hover .tonio-project-img {
+  animation-play-state: paused;
+}
+
+/* 2. Coinforge (Defi Crypto Visuals: Browser Screenshot Frame) */
+.coinforge-screenshot-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 15, 0.7);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  transform: none;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.showcase-row:hover .coinforge-screenshot-frame {
+  transform: scale(1.03);
+  border-color: rgba(245, 158, 11, 0.25);
+  box-shadow: 0 20px 45px rgba(245, 158, 11, 0.15), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.coinforge-project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  animation: auto-scroll-image 20s ease-in-out infinite;
+}
+
+.showcase-row:hover .coinforge-project-img {
+  animation-play-state: paused;
+}
+
+/* 3. Valut Currency (Remittance Visuals: Browser Screenshot Frame) */
+.valut-screenshot-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 15, 0.7);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  transform: none;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.showcase-row:hover .valut-screenshot-frame {
+  transform: scale(1.03);
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow: 0 20px 45px rgba(99, 102, 241, 0.15), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.valut-project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  animation: auto-scroll-image 18s ease-in-out infinite;
+}
+
+.showcase-row:hover .valut-project-img {
+  animation-play-state: paused;
+}
+
+/* Animations */
+@keyframes auto-scroll-image {
+  0%, 100% {
+    object-position: top;
+  }
+  50% {
+    object-position: bottom;
+  }
+}
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 4px #10b981;
+    background: #10b981;
+  }
+  50% {
+    box-shadow: 0 0 10px #10b981;
+    background: #34d399;
+  }
+}
+
+@keyframes float-coin {
+  0%, 100% {
+    transform: translateY(0px) rotateY(15deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateY(15deg);
+  }
+}
+
+@keyframes shadow-coin {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(0.85);
+    opacity: 0.25;
+  }
+}
+
+@keyframes pulse-arrow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes transfer-pulse {
+  100% {
+    left: 100%;
+  }
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 992px) {
+  .portfolio-page {
+    gap: 2.5rem;
+  }
+
+  .portfolio-intro {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+  }
+
+  .projects-showcase-list {
+    gap: 2.5rem;
+  }
+
+  .showcase-row {
+    flex-direction: column !important;
+    gap: 2rem;
+    min-height: auto;
+    padding: 1.8rem;
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    background: rgba(13, 13, 18, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .showcase-row:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .showcase-details {
+    width: 100%;
+    min-width: 100%;
+    order: 2;
+    gap: 1.1rem;
+  }
+
+  .project-title {
+    font-size: 1.8rem;
+  }
+
+  .project-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .tech-tag {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .project-cta-button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem;
+    border-radius: 10px;
+  }
+
+  .showcase-visual {
+    width: 100%;
+    min-width: 100%;
+    height: 280px;
+    order: 1;
+    border: none;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .showcase-row:hover .showcase-visual {
+    box-shadow: none;
+  }
+
+  .showcase-glow {
+    width: 320px;
+    height: 320px;
+  }
+
+  /* Scaled widgets for mobile */
+  .tonio-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .showcase-row:hover .tonio-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+  }
+
+  .coinforge-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .showcase-row:hover .coinforge-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+  }
+
+  .valut-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .showcase-row:hover .valut-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase-row {
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .showcase-visual {
+    height: 240px;
+  }
+
+  .tonio-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .showcase-row:hover .tonio-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+  }
+
+  .coinforge-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .showcase-row:hover .coinforge-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+  }
+
+  .valut-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .showcase-row:hover .valut-screenshot-frame {
+    transform: rotateY(0deg) rotateX(0deg) !important;
+  }
+}

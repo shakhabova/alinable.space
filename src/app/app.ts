@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 export class App {
   protected readonly title = signal('portfolio');
   protected readonly isMobileMenuOpen = signal(false);
+  lang = inject(LanguageService);
 
   toggleMobileMenu() {
     this.isMobileMenuOpen.update(v => !v);

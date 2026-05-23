@@ -63,7 +63,7 @@
   color: var(--text-muted);
   line-height: 1.8;
   text-align: right;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 @media (max-width: 1024px) {
@@ -86,7 +86,6 @@
 
   .social-links-list {
     width: 100%;
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-projects-showcase',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './projects-showcase.html',
   styleUrl: './projects-showcase.css',
 })
-export class ProjectsShowcase {}
+export class ProjectsShowcase {
+  lang = inject(LanguageService);
+}

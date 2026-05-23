@@ -3,7 +3,7 @@
 
 :root {
   /* Colors */
-  --bg-primary: #050507;
+  --bg-primary: #000000;
   --bg-secondary: #0d0d12;
   --bg-tertiary: rgba(255, 255, 255, 0.03);
 
@@ -45,34 +45,7 @@ body {
   z-index: 0;
 }
 
-/* Background Image */
-.bg-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  /* Use the provided image (please save it as bg-home.png in your public folder) */
 
-  background-image: url('/bg-home.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  z-index: -2;
-  pointer-events: none;
-}
-
-/* Optional overlay to make sure text is readable against the image */
-.bg-image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, transparent 0%, rgba(5, 5, 7, 0.4) 100%);
-  z-index: -1;
-}
 
 
 h1,

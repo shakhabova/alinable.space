@@ -2,4 +2,81 @@
     <app-profile-header class="hero-left"></app-profile-header>
     <app-social-links class="hero-right"></app-social-links>
 </div>
+
+<div class="process-section glass-panel animate-fade-in delay-200">
+    <div class="process-glow"></div>
+
+    <div class="process-left">
+        <div class="process-subtitle">{{ lang.t('MY PROCESS', 'МОЙ ПРОЦЕСС') }}</div>
+        <h2 class="process-title">
+            {{ lang.t('From idea', 'От идеи') }}<br>{{ lang.t('to experience.', 'до воплощения.') }}
+            <span class="swoosh-container">
+                <svg class="swoosh-svg" viewBox="0 0 300 100" fill="none">
+                    <path d="M10 80 C 85 110, 260 90, 275 45 C 280 25, 230 10, 160 20" stroke="url(#swoosh-gradient)"
+                        stroke-width="1.8" stroke-linecap="round" />
+                    <defs>
+                        <linearGradient id="swoosh-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="rgba(144, 126, 181, 0)" />
+                            <stop offset="40%" stop-color="rgba(144, 126, 181, 0.15)" />
+                            <stop offset="80%" stop-color="rgba(144, 126, 181, 0.65)" />
+                            <stop offset="100%" stop-color="#ffffff" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="swoosh-star">✦</span>
+            </span>
+        </h2>
+    </div>
+
+    <div class="process-right">
+        <!-- Step 1 -->
+        <div class="process-step">
+            <div class="step-circle-wrapper">
+                <div class="step-circle">01</div>
+                <div class="step-connector">
+                    <div class="connector-line"></div>
+                    <span class="connector-star">✦</span>
+                </div>
+            </div>
+            <h3 class="step-title">{{ lang.t('Discover', 'Исследование') }}</h3>
+            <p class="step-desc">{{ lang.t('Understanding your idea, users and goals.', 'Понимание вашей идеи, пользователей и целей.') }}</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="process-step">
+            <div class="step-circle-wrapper">
+                <div class="step-circle">02</div>
+                <div class="step-connector">
+                    <div class="connector-line"></div>
+                    <span class="connector-star">✦</span>
+                </div>
+            </div>
+            <h3 class="step-title">{{ lang.t('Design', 'Проектирование') }}</h3>
+            <p class="step-desc">{{ lang.t('Creating intuitive and beautiful user experiences.', 'Создание интуитивных и красивых интерфейсов.') }}</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="process-step">
+            <div class="step-circle-wrapper">
+                <div class="step-circle">03</div>
+                <div class="step-connector">
+                    <div class="connector-line"></div>
+                    <span class="connector-star">✦</span>
+                </div>
+            </div>
+            <h3 class="step-title">{{ lang.t('Develop', 'Разработка') }}</h3>
+            <p class="step-desc">{{ lang.t('Writing clean code and building functional solutions.', 'Написание чистого кода и создание функциональных решений.') }}</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="process-step">
+            <div class="step-circle-wrapper">
+                <div class="step-circle">04</div>
+            </div>
+            <h3 class="step-title">{{ lang.t('Deliver', 'Запуск') }}</h3>
+            <p class="step-desc">{{ lang.t('Testing, optimizing and launching with care.', 'Тестирование, оптимизация и бережный запуск.') }}</p>
+        </div>
+    </div>
+</div>
+
 <app-projects-showcase></app-projects-showcase>

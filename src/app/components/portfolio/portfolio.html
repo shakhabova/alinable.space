@@ -1,0 +1,111 @@
+<div class="portfolio-page animate-fade-in delay-100">
+  <!-- Decorative Cosmic Space Elements -->
+  <div class="cosmic-star star-1">✦</div>
+  <div class="cosmic-star star-2">✦</div>
+  <div class="cosmic-star star-3">✦</div>
+
+  <div class="portfolio-intro">
+    <div class="subtitle">
+      <span class="star animate-pulse-star">✦</span>
+      <p>{{ lang.t('SELECTED WORKS', 'ИЗБРАННЫЕ РАБОТЫ') }}</p>
+    </div>
+    <h1 class="title">{{ lang.t('Crafted with', 'Создано с') }}<br class="desktop-only">{{ lang.t('precision & ', 'точностью & ') }}<em>{{ lang.t('passion.', 'страстью.') }}</em></h1>
+    <p class="description">{{ lang.t('A curated selection of responsive platforms, fintech websites, and decentralized interfaces.', 'Курируемая подборка адаптивных платформ, финтех-сайтов и децентрализованных интерфейсов.') }}
+    </p>
+  </div>
+
+  <div class="projects-showcase-list">
+    @for (project of projects; track project.title; let idx = $index) {
+    <div class="showcase-row {{ project.themeClass }}">
+      <div class="showcase-glow"></div>
+
+      <!-- Text details column -->
+      <div class="showcase-details">
+        <div class="project-num">0{{ idx + 1 }} // {{ lang.t(project.title === 'Tonio World' ? 'FINTECH PLATFORM' : project.title === 'Coinforge' ? 'DEFI PLATFORM' : 'REMITTANCE GATEWAY', project.title === 'Tonio World' ? 'ФИНТЕХ ПЛАТФОРМА' : project.title === 'Coinforge' ? 'DEFI ПЛАТФОРМА' : 'ШЛЮЗ ПЕРЕВОДОВ') }}</div>
+        <span class="project-subtitle">{{ lang.t(project.subtitle, project.subtitleRu) }}</span>
+        <h2 class="project-title">{{ project.title }}</h2>
+        <p class="project-desc">{{ lang.t(project.description, project.descriptionRu) }}</p>
+
+        <div class="tags">
+          @for (tag of (lang.currentLang() === 'EN' ? project.tags : project.tagsRu); track tag) {
+          <span class="tech-tag glass-panel">{{ tag }}</span>
+          }
+        </div>
+
+        <!-- <a [href]="project.link" class="project-cta-button glass-panel">
+          <span class="cta-text">{{ lang.t('VIEW PROJECT', 'ОТКРЫТЬ ПРОЕКТ') }}</span>
+          <svg class="cta-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a> -->
+      </div>
+
+      <!-- CSS Mockup visual column -->
+      <div class="showcase-visual glass-panel">
+        @if (project.title === 'Tonio World') {
+        <!-- Tonio World: Premium Browser Glass Mockup -->
+        <div class="mockup-container tonio-mockup">
+          <div class="mockup-grid-bg"></div>
+
+          <!-- Browser Glass Mockup Frame -->
+          <div class="tonio-screenshot-frame glass-panel">
+            <div class="frame-header">
+              <div class="frame-dots">
+                <span class="frame-dot dot-red"></span>
+                <span class="frame-dot dot-yellow"></span>
+                <span class="frame-dot dot-green"></span>
+              </div>
+              <div class="frame-search-bar">tonio.world</div>
+            </div>
+            <div class="frame-body">
+              <img src="/tonio-project.png" alt="Tonio World Project Showcase" class="tonio-project-img">
+            </div>
+          </div>
+        </div>
+        } @else if (project.title === 'Coinforge') {
+        <!-- Coinforge: Premium Browser Glass Mockup -->
+        <div class="mockup-container coinforge-mockup">
+          <div class="mockup-grid-bg"></div>
+
+          <!-- Browser Glass Mockup Frame -->
+          <div class="coinforge-screenshot-frame glass-panel">
+            <div class="frame-header">
+              <div class="frame-dots">
+                <span class="frame-dot dot-red"></span>
+                <span class="frame-dot dot-yellow"></span>
+                <span class="frame-dot dot-green"></span>
+              </div>
+              <div class="frame-search-bar">coinforge.online</div>
+            </div>
+            <div class="frame-body">
+              <img src="/coinforge.png" alt="Coinforge Project Showcase" class="coinforge-project-img">
+            </div>
+          </div>
+        </div>
+        } @else if (project.title === 'Valut Currency') {
+        <!-- Valut Currency: Premium Browser Glass Mockup -->
+        <div class="mockup-container valut-mockup">
+          <div class="mockup-grid-bg"></div>
+
+          <!-- Browser Glass Mockup Frame -->
+          <div class="valut-screenshot-frame glass-panel">
+            <div class="frame-header">
+              <div class="frame-dots">
+                <span class="frame-dot dot-red"></span>
+                <span class="frame-dot dot-yellow"></span>
+                <span class="frame-dot dot-green"></span>
+              </div>
+              <div class="frame-search-bar">valutcurrency.com</div>
+            </div>
+            <div class="frame-body">
+              <img src="/currency.png" alt="Valut Currency Project Showcase" class="valut-project-img">
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>

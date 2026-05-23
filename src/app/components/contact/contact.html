@@ -1,116 +1,89 @@
 <div class="contact-page animate-fade-in delay-100">
-  <div class="contact-left">
-    <div class="subtitle">
-      <p>LET'S CONNECT</p>
+  <div class="contact-card glass-panel">
+    <div class="contact-glow"></div>
+    
+    <!-- Stars particles inside the card for cosmic feeling -->
+    <div class="cosmic-star star-1">✦</div>
+    <div class="cosmic-star star-2">✦</div>
+    
+    <div class="contact-header">
+      <div class="subtitle">
+        <span class="star animate-pulse-star">✦</span>
+        <p>{{ lang.t("LET'S CONNECT", 'СВЯЗАТЬСЯ') }}</p>
+      </div>
+      <h1 class="title">{{ lang.t('Let\'s create', 'Давайте создадим') }}<br class="desktop-only">{{ lang.t('something ', 'что-то ') }}<em>{{ lang.t('meaningful.', 'значимое.') }}</em></h1>
+      <p class="description">{{ lang.t('I\'m open to collaborations, creative projects, and opportunities to build thoughtful digital experiences.', 'Я открыта к сотрудничеству, творческим проектам и возможностям создавать продуманные цифровые продукты.') }}</p>
     </div>
-    <h1 class="title">Let's create<br class="desktop-only">something <em>meaningful.</em></h1>
-    <p class="description">I'm open to collaborations, creative projects,<br class="desktop-only">and opportunities to build thoughtful
-      digital experiences.</p>
 
-    <div class="contact-socials">
-      <a href="https://t.me/tthisalina" class="social-row">
-        <div class="icon glass-panel"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <div class="contact-grid">
+      <!-- Telegram Card -->
+      <a href="https://t.me/tthisalina" class="contact-grid-card glass-panel">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg></div>
-        <div class="info">
-          <span class="label">Telegram</span>
-          <span class="value">@tthisalina</span>
+          </svg>
         </div>
-        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="1.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
+        <h3>Telegram</h3>
+        <p>@tthisalina</p>
+        <span class="action-text">{{ lang.t('SEND MESSAGE ➔', 'НАПИСАТЬ СООБЩЕНИЕ ➔') }}</span>
       </a>
 
-      <div class="divider"></div>
+      <!-- Email Card -->
+      <a href="mailto:alina.shakhabovaa@gmail.com" class="contact-grid-card glass-panel">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <h3>Email</h3>
+        <p>alina.shakhabovaa@gmail.com</p>
+        <span class="action-text">{{ lang.t('WRITE AN EMAIL ➔', 'ОТПРАВИТЬ ПИСЬМО ➔') }}</span>
+      </a>
 
-      <a href="https://www.instagram.com/alinable_/" class="social-row">
-        <div class="icon glass-panel"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Instagram Card -->
+      <a href="https://www.instagram.com/alinable_/" class="contact-grid-card glass-panel">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg></div>
-        <div class="info">
-          <span class="label">Instagram</span>
-          <span class="value">@alinable_</span>
-        </div>
-        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="1.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </a>
-
-      <div class="divider"></div>
-
-      <a href="mailto:alina.shakhabovaa@gmail.com" class="social-row">
-        <div class="icon glass-panel"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg></div>
-        <div class="info">
-          <span class="label">Email</span>
-          <span class="value">alina.shakhabovaa@gmail.com</span>
-        </div>
-        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="1.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </a>
-    </div>
-
-    <!-- <div class="status-card glass-panel">
-      <span class="star">✦</span>
-      <p>I'm currently available for new projects<br>and exciting collaborations.</p>
-      <div class="status-dot"></div>
-    </div> -->
-
-    <div class="location">
-      <span class="star">✦</span>
-      <div>
-        <p>Istanbul, Türkiye</p>
-        <span>GMT+3</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-right">
-    <div class="form-container glass-panel">
-      <div class="form-header">
-        <div class="subtitle">
-          <span class="star">✦</span>
-          <p>SEND A MESSAGE</p>
-        </div>
-        <p class="form-desc">I usually reply within 24 hours.</p>
-      </div>
-
-      @if (!isSubmitted()) {
-      <form class="contact-form" action="https://formspree.io/f/xojryryk" method="POST" (submit)="onSubmit($event)">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="Your name" class="form-input" required>
-          <input type="email" name="email" placeholder="Your email" class="form-input" required>
-        </div>
-        <input type="text" name="subject" placeholder="Subject" class="form-input">
-        <textarea name="message" placeholder="Your message" class="form-input form-textarea" required></textarea>
-
-        <button type="submit" class="submit-btn" [disabled]="isSubmitting()">
-          {{ isSubmitting() ? 'Sending...' : 'Send Message' }}
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
-        </button>
-      </form>
-      } @else {
-      <div class="success-message animate-fade-in">
-        <span class="star">✦</span>
-        <h3>Thank you!</h3>
-        <p>Your message has been sent successfully.<br class="desktop-only">I will get back to you soon.</p>
-        <button type="button" class="submit-btn" (click)="isSubmitted.set(false)">Send another message</button>
+        </div>
+        <h3>Instagram</h3>
+        <p>@alinable_</p>
+        <span class="action-text">{{ lang.t('VIEW PROFILE ➔', 'ОТКРЫТЬ ПРОФИЛЬ ➔') }}</span>
+      </a>
+    </div>
+
+    <div class="contact-footer">
+      <div class="location-widget">
+        <span class="footer-icon">✦</span>
+        <div class="widget-details">
+          <span class="widget-label">{{ lang.t('LOCATION', 'ЛОКАЦИЯ') }}</span>
+          <span class="widget-value">Istanbul, Türkiye</span>
+        </div>
       </div>
-      }
+
+      <div class="timezone-widget">
+        <span class="footer-icon">✦</span>
+        <div class="widget-details">
+          <span class="widget-label">{{ lang.t('TIMEZONE', 'ЧАСОВОЙ ПОЯС') }}</span>
+          <span class="widget-value">GMT+3</span>
+        </div>
+      </div>
+
+      <div class="coordinates-widget">
+        <span class="footer-icon">✦</span>
+        <div class="widget-details">
+          <span class="widget-label">{{ lang.t('COORDINATES', 'КООРДИНАТЫ') }}</span>
+          <span class="widget-value">41.0082° N,<br> 28.9784° E</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

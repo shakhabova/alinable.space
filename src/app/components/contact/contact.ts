@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,6 +10,7 @@ import { Component, signal } from '@angular/core';
 export class Contact {
   isSubmitted = signal(false);
   isSubmitting = signal(false);
+  lang = inject(LanguageService);
 
   async onSubmit(event: Event) {
     event.preventDefault();
