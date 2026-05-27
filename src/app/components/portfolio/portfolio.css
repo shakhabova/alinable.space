@@ -5,6 +5,9 @@
   padding: 2rem 0;
   min-height: 70vh;
   position: relative;
+  --tonio-container-height: 368px;
+  --coinforge-container-height: 368px;
+  --valut-container-height: 368px;
 }
 
 /* Starry space background overlay */
@@ -18,7 +21,8 @@
   background-image: url('/stars.svg');
   background-repeat: repeat;
   background-size: 320px 320px;
-  opacity: 0.18; /* Extremely soft space dust */
+  opacity: 0.18;
+  /* Extremely soft space dust */
   pointer-events: none;
   z-index: 0;
 }
@@ -53,11 +57,14 @@
 }
 
 @keyframes pulse-star-shimmer {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.5;
     text-shadow: none;
   }
+
   50% {
     transform: scale(1.3);
     opacity: 1;
@@ -79,7 +86,8 @@
   top: 6%;
   right: 12%;
   animation-delay: 0s;
-  color: rgba(144, 126, 181, 0.35); /* Soft desaturated lavender star */
+  color: rgba(144, 126, 181, 0.35);
+  /* Soft desaturated lavender star */
   font-size: 1.1rem;
 }
 
@@ -87,7 +95,8 @@
   top: 24%;
   left: 6%;
   animation-delay: 2s;
-  color: rgba(16, 185, 129, 0.25); /* Soft desaturated emerald star */
+  color: rgba(16, 185, 129, 0.25);
+  /* Soft desaturated emerald star */
   font-size: 0.85rem;
 }
 
@@ -95,15 +104,19 @@
   top: 48%;
   right: 6%;
   animation-delay: 4s;
-  color: rgba(245, 158, 11, 0.25); /* Soft desaturated amber star */
+  color: rgba(245, 158, 11, 0.25);
+  /* Soft desaturated amber star */
   font-size: 1rem;
 }
 
 @keyframes star-float-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) scale(1);
     opacity: 0.25;
   }
+
   50% {
     transform: translateY(-8px) scale(1.2);
     opacity: 0.7;
@@ -415,9 +428,17 @@
   border-radius: 50%;
 }
 
-.dot-red { background: #ef4444; }
-.dot-yellow { background: #f59e0b; }
-.dot-green { background: #10b981; }
+.dot-red {
+  background: #ef4444;
+}
+
+.dot-yellow {
+  background: #f59e0b;
+}
+
+.dot-green {
+  background: #10b981;
+}
 
 .frame-search-bar {
   position: absolute;
@@ -434,23 +455,23 @@
 }
 
 .frame-body {
-  flex: 1;
+  height: calc(100% - 32px);
   width: 100%;
   overflow: hidden;
   position: relative;
   background: #000;
+  isolation: isolate;
+  transform: translateZ(0);
 }
 
 .tonio-project-img {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  animation: auto-scroll-image 16s ease-in-out infinite;
-}
-
-.showcase-row:hover .tonio-project-img {
-  animation-play-state: paused;
+  height: auto;
+  display: block;
+  animation: auto-scroll-tonio 16s ease-in-out infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* 2. Coinforge (Defi Crypto Visuals: Browser Screenshot Frame) */
@@ -478,15 +499,13 @@
 }
 
 .coinforge-project-img {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  animation: auto-scroll-image 20s ease-in-out infinite;
-}
-
-.showcase-row:hover .coinforge-project-img {
-  animation-play-state: paused;
+  height: auto;
+  display: block;
+  animation: auto-scroll-coinforge 20s ease-in-out infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* 3. Valut Currency (Remittance Visuals: Browser Screenshot Frame) */
@@ -514,31 +533,69 @@
 }
 
 .valut-project-img {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  animation: auto-scroll-image 18s ease-in-out infinite;
-}
-
-.showcase-row:hover .valut-project-img {
-  animation-play-state: paused;
+  height: auto;
+  display: block;
+  animation: auto-scroll-valut 18s ease-in-out infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Animations */
-@keyframes auto-scroll-image {
-  0%, 100% {
-    object-position: top;
+@keyframes auto-scroll-tonio {
+
+  0%,
+  100% {
+    transform: translateY(0);
   }
+
   50% {
-    object-position: bottom;
+    transform: translateY(calc(-100% + var(--tonio-container-height)));
   }
 }
+
+@keyframes auto-scroll-coinforge {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(calc(-100% + var(--coinforge-container-height)));
+  }
+}
+
+@keyframes auto-scroll-valut {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(calc(-100% + var(--valut-container-height)));
+  }
+}
+
+@media (hover: hover) {
+
+  .showcase-row:hover .tonio-project-img,
+  .showcase-row:hover .coinforge-project-img,
+  .showcase-row:hover .valut-project-img {
+    animation-play-state: paused;
+  }
+}
+
 @keyframes pulse-dot {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.5);
     opacity: 0.4;
@@ -546,10 +603,13 @@
 }
 
 @keyframes pulse-green {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 4px #10b981;
     background: #10b981;
   }
+
   50% {
     box-shadow: 0 0 10px #10b981;
     background: #34d399;
@@ -557,19 +617,25 @@
 }
 
 @keyframes float-coin {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotateY(15deg);
   }
+
   50% {
     transform: translateY(-8px) rotateY(15deg);
   }
 }
 
 @keyframes shadow-coin {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.4;
   }
+
   50% {
     transform: scale(0.85);
     opacity: 0.25;
@@ -577,9 +643,12 @@
 }
 
 @keyframes pulse-arrow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(2px);
   }
@@ -595,6 +664,9 @@
 @media (max-width: 992px) {
   .portfolio-page {
     gap: 2.5rem;
+    --tonio-container-height: 248px;
+    --coinforge-container-height: 248px;
+    --valut-container-height: 248px;
   }
 
   .portfolio-intro {
@@ -706,6 +778,12 @@
 }
 
 @media (max-width: 480px) {
+  .portfolio-page {
+    --tonio-container-height: 208px;
+    --coinforge-container-height: 208px;
+    --valut-container-height: 208px;
+  }
+
   .showcase-row {
     padding: 1.25rem;
     gap: 1.5rem;

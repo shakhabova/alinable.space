@@ -258,21 +258,55 @@
     gap: 2.5rem;
   }
 
+  .process-step {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+    position: relative;
+    text-align: left;
+  }
+
   .step-circle-wrapper {
-    width: auto;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 56px;
+    padding-top: 0.15rem;
+  }
+
+  .step-title {
+    margin-bottom: 0.3rem;
   }
 
   /* Vertical Connector Line on Mobile */
   .step-connector {
-    left: 28px;
-    right: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     top: 56px;
     bottom: -2.5rem;
-    height: calc(2.5rem + 1px);
+    height: auto;
     width: 1px;
+    display: flex;
     flex-direction: column;
-    transform: none;
+    align-items: center;
     justify-content: center;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .connector-line {
@@ -282,8 +316,12 @@
   }
 
   .connector-star {
-    margin: 0.3rem 0;
-    transform: rotate(90deg);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    margin: 0;
+    color: rgba(144, 126, 181, 0.6);
+    font-size: 0.65rem;
   }
 }
 
@@ -301,16 +339,24 @@
     margin-bottom: 3.5rem;
   }
 
+  .step-circle-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
   .step-circle {
     width: 48px;
     height: 48px;
     font-size: 0.85rem;
   }
 
+  .step-content {
+    min-height: 48px;
+    padding-top: 0.05rem;
+  }
+
   .step-connector {
-    left: 24px;
     top: 48px;
     bottom: -2.5rem;
-    height: calc(2.5rem + 1px);
   }
 }

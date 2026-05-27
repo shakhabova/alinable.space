@@ -191,8 +191,12 @@
   }
 
   .project-info {
-    max-width: 100%;
     gap: 0.8rem;
+  }
+
+  .coming-soon-badge {
+    margin-bottom: 0.3rem;
+    /* Lift it higher above the title by replacing negative margin */
   }
 
   .project-info h3 {
@@ -207,7 +211,8 @@
     background: linear-gradient(to top, rgba(5, 5, 7, 0.98) 0%, rgba(5, 5, 7, 0.75) 65%, rgba(5, 5, 7, 0.1) 100%);
   }
 
-  .tech-tag, .tech-icon {
+  .tech-tag,
+  .tech-icon {
     font-size: 0.65rem;
     padding: 0.35rem 0.7rem;
   }
