@@ -1,24 +1,31 @@
 <nav class="navbar animate-fade-in" [class.mobile-menu-open]="isMobileMenuOpen()">
   <a routerLink="/" class="logo" (click)="closeMobileMenu()"></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="primary-navigation">
     <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
         (click)="closeMobileMenu()">{{ lang.t('HOME', 'ГЛАВНАЯ') }}</a><span class="dot"></span></li>
     <li><a routerLink="/portfolio" routerLinkActive="active" (click)="closeMobileMenu()">{{ lang.t('PORTFOLIO', 'ПОРТФОЛИО') }}</a><span class="dot"></span></li>
     <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">{{ lang.t('CONTACT', 'КОНТАКТЫ') }}</a><span
         class="dot"></span></li>
     <li class="lang-switch-item">
-      <button class="lang-switch-btn glass-panel" (click)="lang.toggleLanguage()">
+      <button class="lang-switch-btn glass-panel" type="button" (click)="toggleLanguageAndCloseMenu()">
         <span [class.active-lang]="lang.currentLang() === 'EN'">EN</span>
         <span class="lang-divider">|</span>
         <span [class.active-lang]="lang.currentLang() === 'RU'">RU</span>
       </button>
     </li>
   </ul>
-  <div class="mobile-menu-btn" (click)="toggleMobileMenu()">
+  <button
+    class="mobile-menu-btn"
+    type="button"
+    aria-label="Toggle navigation menu"
+    aria-controls="primary-navigation"
+    [attr.aria-expanded]="isMobileMenuOpen()"
+    (click)="toggleMobileMenu()"
+  >
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
-  </div>
+  </button>
 </nav>
 
 <main class="portfolio-container">

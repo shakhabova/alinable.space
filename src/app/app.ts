@@ -20,4 +20,9 @@ export class App {
   closeMobileMenu() {
     this.isMobileMenuOpen.set(false);
   }
+
+  toggleLanguageAndCloseMenu() {
+    this.lang.toggleLanguage();
+    this.closeMobileMenu();
+  }
 }
