@@ -1,13 +1,11 @@
 .portfolio-page {
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 3rem;
   padding: 2rem 0;
   min-height: 70vh;
   position: relative;
-  --tonio-container-height: 368px;
-  --coinforge-container-height: 368px;
-  --valut-container-height: 368px;
+  --frame-body-height: 368px;
 }
 
 /* Starry space background overlay */
@@ -163,6 +161,72 @@
   line-height: 1.6;
 }
 
+/* Category Switcher Tabs */
+.category-tabs {
+  display: inline-flex;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  border-radius: 16px;
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.cat-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-main);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cat-tab:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.cat-tab.active {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cat-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  transition: all 0.35s ease;
+}
+
+.cat-tab.active .cat-count {
+  color: var(--text-primary);
+  background: rgba(144, 126, 181, 0.22);
+  border-color: rgba(144, 126, 181, 0.4);
+}
+
 /* Widescreen Projects Showcase */
 .projects-showcase-list {
   display: flex;
@@ -181,11 +245,71 @@
   min-height: 440px;
   box-sizing: border-box;
   z-index: 1;
+  /* Per-theme accents (overridden below) */
+  --glow-color: rgba(144, 126, 181, 0.12);
+  --accent-color: rgba(255, 255, 255, 0.2);
+  --accent-shadow: rgba(0, 0, 0, 0.3);
+  animation: row-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes row-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Alternating columns */
 .showcase-row:nth-child(even) {
   flex-direction: row-reverse;
+}
+
+/* Per-theme accent tokens */
+.theme-tonio {
+  --glow-color: rgba(16, 185, 129, 0.12);
+  --accent-color: rgba(16, 185, 129, 0.25);
+  --accent-shadow: rgba(16, 185, 129, 0.15);
+}
+
+.theme-coinforge {
+  --glow-color: rgba(245, 158, 11, 0.12);
+  --accent-color: rgba(245, 158, 11, 0.25);
+  --accent-shadow: rgba(245, 158, 11, 0.15);
+}
+
+.theme-valut {
+  --glow-color: rgba(99, 102, 241, 0.12);
+  --accent-color: rgba(99, 102, 241, 0.25);
+  --accent-shadow: rgba(99, 102, 241, 0.15);
+}
+
+.theme-mali {
+  --glow-color: rgba(196, 120, 130, 0.14);
+  --accent-color: rgba(212, 160, 140, 0.32);
+  --accent-shadow: rgba(196, 120, 130, 0.18);
+}
+
+.theme-asa {
+  --glow-color: rgba(250, 190, 90, 0.13);
+  --accent-color: rgba(250, 190, 90, 0.3);
+  --accent-shadow: rgba(250, 190, 90, 0.16);
+}
+
+.theme-doula {
+  --glow-color: rgba(180, 150, 110, 0.14);
+  --accent-color: rgba(196, 166, 126, 0.32);
+  --accent-shadow: rgba(180, 150, 110, 0.16);
+}
+
+.theme-zarema {
+  --glow-color: rgba(90, 160, 170, 0.14);
+  --accent-color: rgba(110, 175, 182, 0.32);
+  --accent-shadow: rgba(90, 160, 170, 0.16);
 }
 
 /* Row Background Glow */
@@ -199,28 +323,18 @@
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 0;
   filter: blur(100px);
+  background: radial-gradient(circle, var(--glow-color) 0%, rgba(0, 0, 0, 0) 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.showcase-row:nth-child(even) .showcase-glow {
+  right: auto;
+  left: -100px;
 }
 
 .showcase-row:hover .showcase-glow {
   opacity: 0.75;
-}
-
-.theme-tonio .showcase-glow {
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 70%);
-  top: -100px;
-  right: -100px;
-}
-
-.theme-coinforge .showcase-glow {
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0) 70%);
-  top: -100px;
-  left: -100px;
-}
-
-.theme-valut .showcase-glow {
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
-  top: -100px;
-  right: -100px;
 }
 
 /* Text details column */
@@ -287,51 +401,6 @@
   border-radius: 6px;
 }
 
-.project-cta-button {
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.85rem 1.6rem;
-  text-decoration: none;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--text-muted);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  box-sizing: border-box;
-}
-
-.project-cta-button:hover {
-  color: var(--text-primary);
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
-}
-
-.project-cta-button:active {
-  transform: translateY(0) scale(0.97);
-}
-
-.cta-text {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.cta-arrow {
-  transition: transform 0.3s ease;
-}
-
-.project-cta-button:hover .cta-arrow {
-  transform: translateX(4px);
-}
-
 /* CSS Mockup visual column */
 .showcase-visual {
   flex: 1.2;
@@ -380,8 +449,8 @@
   pointer-events: none;
 }
 
-/* 1. Tonio World (Fintech Visuals: Browser Screenshot Frame) */
-.tonio-screenshot-frame {
+/* Generic Browser Screenshot Frame */
+.screenshot-frame {
   position: relative;
   width: 100%;
   height: 100%;
@@ -398,10 +467,10 @@
   pointer-events: auto;
 }
 
-.showcase-row:hover .tonio-screenshot-frame {
+.showcase-row:hover .screenshot-frame {
   transform: scale(1.03);
-  border-color: rgba(16, 185, 129, 0.25);
-  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.15), 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-color);
+  box-shadow: 0 20px 45px var(--accent-shadow), 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .frame-header {
@@ -464,199 +533,82 @@
   transform: translateZ(0);
 }
 
-.tonio-project-img {
+/* Fintech: tall full-page screenshots auto-scroll vertically */
+.cat-fintech .project-img {
   position: relative;
   width: 100%;
   height: auto;
   display: block;
-  animation: auto-scroll-tonio 16s ease-in-out infinite;
+  animation: auto-scroll 18s ease-in-out infinite;
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
 
-/* 2. Coinforge (Defi Crypto Visuals: Browser Screenshot Frame) */
-.coinforge-screenshot-frame {
-  position: relative;
+.theme-coinforge .project-img {
+  animation-duration: 20s;
+}
+
+.theme-valut .project-img {
+  animation-duration: 16s;
+}
+
+@keyframes auto-scroll {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(calc(-100% + var(--frame-body-height)));
+  }
+}
+
+/* Brand / Landing: wide presentation mockups, continuous Ken Burns pan */
+.cat-brand .project-img {
   width: 100%;
   height: 100%;
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(10, 10, 15, 0.7);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-  transform: none;
-  z-index: 2;
-  pointer-events: auto;
-}
-
-.showcase-row:hover .coinforge-screenshot-frame {
-  transform: scale(1.03);
-  border-color: rgba(245, 158, 11, 0.25);
-  box-shadow: 0 20px 45px rgba(245, 158, 11, 0.15), 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.coinforge-project-img {
-  position: relative;
-  width: 100%;
-  height: auto;
   display: block;
-  animation: auto-scroll-coinforge 20s ease-in-out infinite;
+  object-fit: cover;
+  object-position: top center;
+  transform-origin: center;
+  animation: brand-kenburns 20s ease-in-out infinite;
   will-change: transform;
-  transform: translate3d(0, 0, 0);
 }
 
-/* 3. Valut Currency (Remittance Visuals: Browser Screenshot Frame) */
-.valut-screenshot-frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(10, 10, 15, 0.7);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-  transform: none;
-  z-index: 2;
-  pointer-events: auto;
+.theme-asa .project-img {
+  animation-duration: 24s;
 }
 
-.showcase-row:hover .valut-screenshot-frame {
-  transform: scale(1.03);
-  border-color: rgba(99, 102, 241, 0.25);
-  box-shadow: 0 20px 45px rgba(99, 102, 241, 0.15), 0 10px 20px rgba(0, 0, 0, 0.3);
+.theme-doula .project-img {
+  animation-duration: 22s;
+  animation-direction: reverse;
 }
 
-.valut-project-img {
-  position: relative;
-  width: 100%;
-  height: auto;
-  display: block;
-  animation: auto-scroll-valut 18s ease-in-out infinite;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
+.theme-zarema .project-img {
+  animation-duration: 26s;
 }
 
-/* Animations */
-@keyframes auto-scroll-tonio {
-
-  0%,
-  100% {
-    transform: translateY(0);
+/* Base scale keeps the crop inside the frame so the pan never reveals edges */
+@keyframes brand-kenburns {
+  0% {
+    transform: scale(1.05) translate(0, 0);
   }
 
   50% {
-    transform: translateY(calc(-100% + var(--tonio-container-height)));
+    transform: scale(1.14) translate(-1.5%, -3%);
   }
-}
 
-@keyframes auto-scroll-coinforge {
-
-  0%,
   100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(calc(-100% + var(--coinforge-container-height)));
-  }
-}
-
-@keyframes auto-scroll-valut {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(calc(-100% + var(--valut-container-height)));
+    transform: scale(1.05) translate(0, 0);
   }
 }
 
 @media (hover: hover) {
 
-  .showcase-row:hover .tonio-project-img,
-  .showcase-row:hover .coinforge-project-img,
-  .showcase-row:hover .valut-project-img {
+  .showcase-row:hover .cat-fintech .project-img,
+  .showcase-row:hover .cat-brand .project-img {
     animation-play-state: paused;
-  }
-}
-
-@keyframes pulse-dot {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(1.5);
-    opacity: 0.4;
-  }
-}
-
-@keyframes pulse-green {
-
-  0%,
-  100% {
-    box-shadow: 0 0 4px #10b981;
-    background: #10b981;
-  }
-
-  50% {
-    box-shadow: 0 0 10px #10b981;
-    background: #34d399;
-  }
-}
-
-@keyframes float-coin {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotateY(15deg);
-  }
-
-  50% {
-    transform: translateY(-8px) rotateY(15deg);
-  }
-}
-
-@keyframes shadow-coin {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-
-  50% {
-    transform: scale(0.85);
-    opacity: 0.25;
-  }
-}
-
-@keyframes pulse-arrow {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(2px);
-  }
-}
-
-@keyframes transfer-pulse {
-  100% {
-    left: 100%;
   }
 }
 
@@ -664,9 +616,7 @@
 @media (max-width: 992px) {
   .portfolio-page {
     gap: 2.5rem;
-    --tonio-container-height: 248px;
-    --coinforge-container-height: 248px;
-    --valut-container-height: 248px;
+    --frame-body-height: 248px;
   }
 
   .portfolio-intro {
@@ -675,6 +625,11 @@
 
   .title {
     font-size: clamp(2.2rem, 9vw, 3.2rem);
+  }
+
+  .cat-tab {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.66rem;
   }
 
   .projects-showcase-list {
@@ -718,13 +673,6 @@
     padding: 0.35rem 0.7rem;
   }
 
-  .project-cta-button {
-    width: 100%;
-    justify-content: center;
-    padding: 0.8rem;
-    border-radius: 10px;
-  }
-
   .showcase-visual {
     width: 100%;
     min-width: 100%;
@@ -745,43 +693,27 @@
     height: 320px;
   }
 
-  /* Scaled widgets for mobile */
-  .tonio-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
+  /* Flatten frame transforms on touch layouts */
+  .screenshot-frame,
+  .showcase-row:hover .screenshot-frame {
+    transform: none !important;
     width: 100% !important;
     height: 100% !important;
-  }
-
-  .showcase-row:hover .tonio-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-  }
-
-  .coinforge-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .showcase-row:hover .coinforge-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-  }
-
-  .valut-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .showcase-row:hover .valut-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
   }
 }
 
 @media (max-width: 480px) {
   .portfolio-page {
-    --tonio-container-height: 208px;
-    --coinforge-container-height: 208px;
-    --valut-container-height: 208px;
+    --frame-body-height: 208px;
+  }
+
+  .category-tabs {
+    width: 100%;
+  }
+
+  .cat-tab {
+    flex: 1;
+    justify-content: center;
   }
 
   .showcase-row {
@@ -791,35 +723,5 @@
 
   .showcase-visual {
     height: 240px;
-  }
-
-  .tonio-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .showcase-row:hover .tonio-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-  }
-
-  .coinforge-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .showcase-row:hover .coinforge-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-  }
-
-  .valut-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .showcase-row:hover .valut-screenshot-frame {
-    transform: rotateY(0deg) rotateX(0deg) !important;
   }
 }

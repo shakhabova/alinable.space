@@ -1,0 +1,166 @@
+<div class="estimate-page animate-fade-in delay-100">
+  <!-- Decorative Cosmic Space Elements -->
+  <div class="cosmic-star star-1">✦</div>
+  <div class="cosmic-star star-2">✦</div>
+  <div class="cosmic-star star-3">✦</div>
+
+  <div class="estimate-intro">
+    <div class="subtitle">
+      <span class="star animate-pulse-star">✦</span>
+      <p>{{ lang.t('PROJECT ESTIMATOR', 'КАЛЬКУЛЯТОР ПРОЕКТА') }}</p>
+    </div>
+    <h1 class="title">{{ lang.t('Estimate your ', 'Рассчитайте ') }}<em>{{ lang.t('project', 'проект') }}</em></h1>
+    <p class="description">{{ lang.t('Shape your idea below and get an instant, indicative range for budget and timeline. It only takes a few clicks — no email required.', 'Соберите свою идею ниже и получите мгновенную ориентировочную оценку бюджета и сроков. Пара кликов — без ввода почты.') }}
+    </p>
+  </div>
+
+  <div class="estimate-layout">
+    <!-- Configurator column -->
+    <div class="configurator">
+      <!-- Step 1: Project type -->
+      <section class="config-block glass-panel">
+        <div class="block-head">
+          <span class="block-num">01</span>
+          <h2 class="block-title">{{ lang.t('Project type', 'Тип проекта') }}</h2>
+        </div>
+        <div class="type-grid">
+          @for (type of projectTypes; track type.id) {
+          <button
+            type="button"
+            class="type-card"
+            [class.selected]="selectedTypeId() === type.id"
+            (click)="selectType(type.id)"
+          >
+            <span class="type-icon">{{ type.icon }}</span>
+            <span class="type-name">{{ lang.t(type.en, type.ru) }}</span>
+            <span class="type-desc">{{ lang.t(type.descEn, type.descRu) }}</span>
+            <span class="type-from">{{ lang.t('from', 'от') }} {{ format(type.basePrice) }}</span>
+          </button>
+          }
+        </div>
+      </section>
+
+      <!-- Step 2: Pages -->
+      <section class="config-block glass-panel">
+        <div class="block-head">
+          <span class="block-num">02</span>
+          <h2 class="block-title">{{ lang.t('Pages / screens', 'Страницы / экраны') }}</h2>
+          <span class="page-count">{{ pages() }}</span>
+        </div>
+        <input
+          type="range"
+          class="page-slider"
+          min="1"
+          max="20"
+          step="1"
+          [value]="pages()"
+          (input)="onPagesInput($event)"
+          [attr.aria-label]="lang.t('Number of pages', 'Количество страниц')"
+        />
+        <div class="slider-legend">
+          <span>1</span>
+          <span class="slider-hint">
+            @if (extraPages() > 0) {
+              {{ extraPages() }} {{ lang.t('extra beyond the base package', 'сверх базового пакета') }}
+            } @else {
+              {{ lang.t('included in the base package', 'входит в базовый пакет') }}
+            }
+          </span>
+          <span>20</span>
+        </div>
+      </section>
+
+      <!-- Step 3: Features -->
+      <section class="config-block glass-panel">
+        <div class="block-head">
+          <span class="block-num">03</span>
+          <h2 class="block-title">{{ lang.t('Add features', 'Дополнительно') }}</h2>
+        </div>
+        <div class="feature-grid">
+          @for (feature of features; track feature.id) {
+          <button
+            type="button"
+            class="feature-chip"
+            [class.selected]="isFeatureSelected(feature.id)"
+            (click)="toggleFeature(feature.id)"
+          >
+            <span class="feature-icon">{{ feature.icon }}</span>
+            <span class="feature-name">{{ lang.t(feature.en, feature.ru) }}</span>
+            <span class="feature-check">{{ isFeatureSelected(feature.id) ? '✓' : '+' }}</span>
+          </button>
+          }
+        </div>
+      </section>
+
+      <!-- Step 4: Timeline -->
+      <section class="config-block glass-panel">
+        <div class="block-head">
+          <span class="block-num">04</span>
+          <h2 class="block-title">{{ lang.t('Delivery pace', 'Скорость запуска') }}</h2>
+        </div>
+        <div class="pace-toggle">
+          <button type="button" class="pace-option" [class.selected]="!rush()" (click)="rush.set(false)">
+            <span class="pace-name">{{ lang.t('Standard', 'Стандарт') }}</span>
+            <span class="pace-desc">{{ lang.t('Balanced timeline', 'Спокойный темп') }}</span>
+          </button>
+          <button type="button" class="pace-option" [class.selected]="rush()" (click)="rush.set(true)">
+            <span class="pace-name">{{ lang.t('Priority', 'Приоритет') }} <span class="pace-badge">+30%</span></span>
+            <span class="pace-desc">{{ lang.t('Faster, dedicated focus', 'Быстрее, полный фокус') }}</span>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Summary column -->
+    <aside class="summary-col">
+      <div class="summary-card glass-panel">
+        <div class="summary-glow"></div>
+
+        <div class="summary-label">{{ lang.t('ESTIMATED INVESTMENT', 'ОРИЕНТИРОВОЧНЫЙ БЮДЖЕТ') }}</div>
+        <div class="summary-price">
+          <span class="price-value">{{ format(priceMin()) }}</span>
+          <span class="price-sep">—</span>
+          <span class="price-value">{{ format(priceMax()) }}</span>
+        </div>
+
+        <div class="summary-timeline">
+          <span class="timeline-icon">✦</span>
+          <span>{{ lang.t('Approx.', 'Примерно') }} <strong>{{ totalWeeks() }}</strong> {{ lang.t('weeks', 'нед.') }}</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <ul class="summary-breakdown">
+          <li>
+            <span>{{ lang.t(selectedType().en, selectedType().ru) }}</span>
+            <span>{{ pages() }} {{ lang.t('pages', 'стр.') }}</span>
+          </li>
+          @for (feature of features; track feature.id) {
+            @if (isFeatureSelected(feature.id)) {
+            <li>
+              <span class="breakdown-feature">{{ feature.icon }} {{ lang.t(feature.en, feature.ru) }}</span>
+              <span>+{{ format(feature.price) }}</span>
+            </li>
+            }
+          }
+          @if (rush()) {
+          <li class="breakdown-rush">
+            <span>⚡ {{ lang.t('Priority delivery', 'Приоритетный запуск') }}</span>
+            <span>+30%</span>
+          </li>
+          }
+        </ul>
+
+        <a routerLink="/contact" class="summary-cta">
+          <span>{{ lang.t('Discuss this project', 'Обсудить проект') }}</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+
+        <p class="summary-note">{{ lang.t('This is an indicative estimate, not a final quote. Every project is unique — let\'s talk through the details together.', 'Это ориентировочная оценка, а не финальная стоимость. Каждый проект уникален — давайте обсудим детали.') }}</p>
+      </div>
+    </aside>
+  </div>
+</div>

@@ -4,6 +4,7 @@
     <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
         (click)="closeMobileMenu()">{{ lang.t('HOME', 'ГЛАВНАЯ') }}</a><span class="dot"></span></li>
     <li><a routerLink="/portfolio" routerLinkActive="active" (click)="closeMobileMenu()">{{ lang.t('PORTFOLIO', 'ПОРТФОЛИО') }}</a><span class="dot"></span></li>
+    <li><a routerLink="/estimate" routerLinkActive="active" (click)="closeMobileMenu()">{{ lang.t('ESTIMATE', 'СМЕТА') }}</a><span class="dot"></span></li>
     <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">{{ lang.t('CONTACT', 'КОНТАКТЫ') }}</a><span
         class="dot"></span></li>
     <li class="lang-switch-item">
@@ -45,6 +46,7 @@
     <ul class="footer-nav">
       <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{ lang.t('HOME', 'ГЛАВНАЯ') }}</a><span class="dot"></span></li>
       <li><a routerLink="/portfolio" routerLinkActive="active">{{ lang.t('PORTFOLIO', 'ПОРТФОЛИО') }}</a><span class="dot"></span></li>
+      <li><a routerLink="/estimate" routerLinkActive="active">{{ lang.t('ESTIMATE', 'СМЕТА') }}</a><span class="dot"></span></li>
       <li><a routerLink="/contact" routerLinkActive="active">{{ lang.t('CONTACT', 'КОНТАКТЫ') }}</a><span class="dot"></span></li>
     </ul>
 
