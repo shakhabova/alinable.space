@@ -1,0 +1,165 @@
+<div class="galaxy-page animate-fade-in delay-100">
+  <!-- Decorative Cosmic Space Elements -->
+  <div class="cosmic-star star-1">✦</div>
+  <div class="cosmic-star star-2">✦</div>
+  <div class="cosmic-star star-3">✦</div>
+
+  <!-- ===== HERO / CONSTELLATION ===== -->
+  <section class="nav-hero">
+    <div class="hero-left">
+      <div class="hero-badge glass-panel">✦ {{ lang.t('YOUR PATH IN IT', 'ТВОЙ ПУТЬ В IT') }}</div>
+      <h1 class="hero-title">
+        {{ lang.t('Navigator of the', 'Навигатор') }}<br>{{ lang.t('IT galaxy', 'по галактике IT') }}
+      </h1>
+      <p class="hero-desc">{{ lang.t('An interactive map of tech careers to understand who is who in IT and find your own direction.', 'Интерактивная карта профессий, чтобы понять, кто есть кто в IT и найти своё направление') }}</p>
+
+      <div class="hero-note glass-panel">
+        <span class="hero-note-icon">✦</span>
+        <p>{{ lang.t("IT is a whole universe of opportunities. Let's find your star.", 'IT — это целая вселенная возможностей. Давай найдём твою звезду.') }}</p>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="constellation">
+        <svg class="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          @for (area of areas; track area.id) {
+          <line x1="50" y1="50" [attr.x2]="area.x" [attr.y2]="area.y" [attr.stroke]="area.accent" />
+          }
+        </svg>
+
+        <div class="it-core">
+          <span class="it-core-text">IT</span>
+        </div>
+
+        @for (area of areas; track area.id) {
+        <button
+          type="button"
+          class="area-node node-{{ area.id }}"
+          [style.left.%]="area.x"
+          [style.top.%]="area.y"
+          [style.--accent]="area.accent"
+          (click)="onAreaClick(area)"
+        >
+          <span class="area-orb"><app-tech-icon [name]="area.icon" /></span>
+          <span class="area-label">
+            <span class="area-name">{{ lang.t(area.nameEn, area.nameRu) }}</span>
+            <span class="area-desc">{{ lang.t(area.descEn, area.descRu) }}</span>
+          </span>
+        </button>
+        }
+      </div>
+
+      <p class="constellation-hint">✦ {{ lang.t('Tap a planet to learn more', 'Нажми на планету, чтобы узнать больше') }}</p>
+    </div>
+  </section>
+
+  <!-- ===== EXPLORER ===== -->
+  <section id="galaxy-explorer" class="explorer glass-panel">
+    <aside class="role-sidebar">
+      <div class="sidebar-head">← {{ lang.t('All directions', 'Все направления') }}</div>
+      <div class="role-list">
+        @for (role of roles; track role.id) {
+        <button
+          type="button"
+          class="role-item"
+          [class.active]="selectedRoleId() === role.id"
+          [style.--accent]="role.accent"
+          (click)="selectRole(role.id)"
+        >
+          <span class="role-item-icon"><app-tech-icon [name]="role.icon" /></span>
+          <span class="role-item-name">{{ role.name }}</span>
+        </button>
+        }
+      </div>
+    </aside>
+
+    <div class="role-main" [style.--accent]="selectedRole().accent">
+      <div class="role-header">
+        <div class="role-header-left">
+          <div class="role-badge-icon"><app-tech-icon [name]="selectedRole().icon" /></div>
+          <div class="role-header-titles">
+            <h2 class="role-name">{{ selectedRole().name }}</h2>
+            <span class="role-cat">{{ lang.t(selectedRole().catEn, selectedRole().catRu) }}</span>
+          </div>
+        </div>
+        <div class="role-planet" aria-hidden="true"></div>
+      </div>
+
+      <p class="role-desc">{{ lang.t(selectedRole().descEn, selectedRole().descRu) }}</p>
+
+      <div class="role-columns">
+        <div class="role-col">
+          <h3 class="col-title">{{ lang.t('What they do', 'Что делает') }}</h3>
+          <ul class="dot-list">
+            @for (item of (lang.currentLang() === 'EN' ? selectedRole().doesEn : selectedRole().doesRu); track item) {
+            <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="role-col">
+          <h3 class="col-title">{{ lang.t('What to learn', 'Что учить') }}</h3>
+          <ul class="dot-list">
+            @for (item of selectedRole().learn; track item) {
+            <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="role-col">
+          <h3 class="col-title ok">{{ lang.t('Fits you if', 'Подойдёт, если ты') }}</h3>
+          <ul class="mark-list">
+            @for (item of (lang.currentLang() === 'EN' ? selectedRole().fitEn : selectedRole().fitRu); track item) {
+            <li><span class="mark ok-mark">✓</span>{{ item }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="role-col">
+          <h3 class="col-title no">{{ lang.t("Not for you if", 'Не подойдёт, если ты') }}</h3>
+          <ul class="mark-list">
+            @for (item of (lang.currentLang() === 'EN' ? selectedRole().notFitEn : selectedRole().notFitRu); track item) {
+            <li><span class="mark no-mark">✕</span>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <h3 class="day-title">{{ lang.t('A day in the life', 'День из жизни') }} · {{ selectedRole().name }}</h3>
+        <div class="day-timeline">
+          @for (step of selectedRole().day; track step.time) {
+          <div class="day-step">
+            <span class="day-time">{{ step.time }}</span>
+            <span class="day-text">{{ lang.t(step.en, step.ru) }}</span>
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="role-footer">
+        <div class="stat">
+          <span class="stat-icon">📊</span>
+          <div class="stat-body">
+            <span class="stat-label">{{ lang.t('Entry level', 'Уровень входа') }}</span>
+            <span class="stat-value">{{ lang.t(selectedRole().levelEn, selectedRole().levelRu) }}</span>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat-icon">⏱️</span>
+          <div class="stat-body">
+            <span class="stat-label">{{ lang.t('Time to learn', 'Время обучения') }}</span>
+            <span class="stat-value">{{ lang.t(selectedRole().durEn, selectedRole().durRu) }}</span>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat-icon">💲</span>
+          <div class="stat-body">
+            <span class="stat-label">{{ lang.t('Average salary', 'Средняя зарплата') }}</span>
+            <span class="stat-value">{{ selectedRole().salary }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
