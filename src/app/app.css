@@ -8,6 +8,10 @@
   /* gap: 4rem; */
 }
 
+/* .portfolio-container:has(.galaxy-page) {
+  max-width: 1380px;
+} */
+
 /* Navbar */
 .navbar {
   display: flex;
