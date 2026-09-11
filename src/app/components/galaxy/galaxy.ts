@@ -260,7 +260,7 @@ export class Galaxy {
         { time: '09:00', en: 'Look at fresh data', ru: 'Смотрю свежие данные' },
         { time: '10:00', en: 'Write SQL queries', ru: 'Пишу SQL-запросы' },
         { time: '12:00', en: 'Build a dashboard', ru: 'Строю дашборд' },
-        { time: '14:00', en: 'Hunt for insights', ru: 'Ищу инсайты' },
+        { time: '14:00', en: 'Find patterns', ru: 'Нахожу закономерности' },
         { time: '16:00', en: 'Prepare a report', ru: 'Готовлю отчёт команде' },
       ],
       levelEn: 'Junior',

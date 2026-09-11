@@ -4,163 +4,398 @@
   <div class="cosmic-star star-2">✦</div>
   <div class="cosmic-star star-3">✦</div>
 
-  <div class="estimate-intro">
+  <!-- Hero Header -->
+  <header class="estimate-hero">
     <div class="subtitle">
       <span class="star animate-pulse-star">✦</span>
-      <p>{{ lang.t('PROJECT ESTIMATOR', 'КАЛЬКУЛЯТОР ПРОЕКТА') }}</p>
+      <p>{{ lang.t('ENGAGEMENT & PRICING', 'ФОРМАТЫ И СТОИМОСТЬ') }}</p>
     </div>
-    <h1 class="title">{{ lang.t('Estimate your ', 'Рассчитайте ') }}<em>{{ lang.t('project', 'проект') }}</em></h1>
-    <p class="description">{{ lang.t('Shape your idea below and get an instant, indicative range for budget and timeline. It only takes a few clicks — no email required.', 'Соберите свою идею ниже и получите мгновенную ориентировочную оценку бюджета и сроков. Пара кликов — без ввода почты.') }}
+    <h1 class="title">
+      {{ lang.t('Transparent formats, ', 'Прозрачные форматы, ') }}
+      <em>{{ lang.t('honest pricing', 'понятные условия') }}</em>
+    </h1>
+    <p class="description">
+      {{ lang.t(
+        'Every custom product has unique needs. Instead of rigid formula calculators or dry service lists, explore clear project tiers, realistic investment ranges, and our collaborative scoping process.',
+        'Каждый проект уникален. Вместо искусственных шаблонных калькуляторов и сухих прайс-листов — понятные форматы работы, ориентиры инвестиций и прозрачные принципы оценки под ваши задачи.'
+      ) }}
     </p>
-  </div>
 
-  <div class="estimate-layout">
-    <!-- Configurator column -->
-    <div class="configurator">
-      <!-- Step 1: Project type -->
-      <section class="config-block glass-panel">
-        <div class="block-head">
-          <span class="block-num">01</span>
-          <h2 class="block-title">{{ lang.t('Project type', 'Тип проекта') }}</h2>
-        </div>
-        <div class="type-grid">
-          @for (type of projectTypes; track type.id) {
-          <button
-            type="button"
-            class="type-card"
-            [class.selected]="selectedTypeId() === type.id"
-            (click)="selectType(type.id)"
-          >
-            <span class="type-icon">{{ type.icon }}</span>
-            <span class="type-name">{{ lang.t(type.en, type.ru) }}</span>
-            <span class="type-desc">{{ lang.t(type.descEn, type.descRu) }}</span>
-            <span class="type-from">{{ lang.t('from', 'от') }} {{ format(type.basePrice) }}</span>
-          </button>
-          }
-        </div>
-      </section>
+    <div class="hero-actions">
+      <a href="#pricing-tiers" class="btn-primary">
+        <span>{{ lang.t('Explore Formats', 'Смотреть форматы') }}</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+      </a>
+      <button type="button" class="btn-secondary" (click)="scrollToMatcher()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+        </svg>
+        <span>{{ lang.t('Smart Matcher', 'Подобрать под задачу') }}</span>
+      </button>
+    </div>
+  </header>
 
-      <!-- Step 2: Pages -->
-      <section class="config-block glass-panel">
-        <div class="block-head">
-          <span class="block-num">02</span>
-          <h2 class="block-title">{{ lang.t('Pages / screens', 'Страницы / экраны') }}</h2>
-          <span class="page-count">{{ pages() }}</span>
-        </div>
-        <input
-          type="range"
-          class="page-slider"
-          min="1"
-          max="20"
-          step="1"
-          [value]="pages()"
-          (input)="onPagesInput($event)"
-          [attr.aria-label]="lang.t('Number of pages', 'Количество страниц')"
-        />
-        <div class="slider-legend">
-          <span>1</span>
-          <span class="slider-hint">
-            @if (extraPages() > 0) {
-              {{ extraPages() }} {{ lang.t('extra beyond the base package', 'сверх базового пакета') }}
-            } @else {
-              {{ lang.t('included in the base package', 'входит в базовый пакет') }}
-            }
-          </span>
-          <span>20</span>
-        </div>
-      </section>
-
-      <!-- Step 3: Features -->
-      <section class="config-block glass-panel">
-        <div class="block-head">
-          <span class="block-num">03</span>
-          <h2 class="block-title">{{ lang.t('Add features', 'Дополнительно') }}</h2>
-        </div>
-        <div class="feature-grid">
-          @for (feature of features; track feature.id) {
-          <button
-            type="button"
-            class="feature-chip"
-            [class.selected]="isFeatureSelected(feature.id)"
-            (click)="toggleFeature(feature.id)"
-          >
-            <span class="feature-icon">{{ feature.icon }}</span>
-            <span class="feature-name">{{ lang.t(feature.en, feature.ru) }}</span>
-            <span class="feature-check">{{ isFeatureSelected(feature.id) ? '✓' : '+' }}</span>
-          </button>
-          }
-        </div>
-      </section>
-
-      <!-- Step 4: Timeline -->
-      <section class="config-block glass-panel">
-        <div class="block-head">
-          <span class="block-num">04</span>
-          <h2 class="block-title">{{ lang.t('Delivery pace', 'Скорость запуска') }}</h2>
-        </div>
-        <div class="pace-toggle">
-          <button type="button" class="pace-option" [class.selected]="!rush()" (click)="rush.set(false)">
-            <span class="pace-name">{{ lang.t('Standard', 'Стандарт') }}</span>
-            <span class="pace-desc">{{ lang.t('Balanced timeline', 'Спокойный темп') }}</span>
-          </button>
-          <button type="button" class="pace-option" [class.selected]="rush()" (click)="rush.set(true)">
-            <span class="pace-name">{{ lang.t('Priority', 'Приоритет') }} <span class="pace-badge">+30%</span></span>
-            <span class="pace-desc">{{ lang.t('Faster, dedicated focus', 'Быстрее, полный фокус') }}</span>
-          </button>
-        </div>
-      </section>
+  <!-- Section 1: Pricing & Collaboration Tiers -->
+  <section id="pricing-tiers" class="section-block">
+    <div class="section-head">
+      <div class="section-kicker">{{ lang.t('PROJECT PACKAGES', 'ТАРИФНЫЕ ФОРМАТЫ') }}</div>
+      <h2 class="section-title">{{ lang.t('Choose how we work together', 'Форматы совместной работы') }}</h2>
+      <p class="section-desc">
+        {{ lang.t(
+          'Four battle-tested formats structured for predictable delivery, clear scope, and uncompromising quality.',
+          'Четыре проверенных формата для предсказуемых сроков, понятного скоупа и высокого качества разработки.'
+        ) }}
+      </p>
     </div>
 
-    <!-- Summary column -->
-    <aside class="summary-col">
-      <div class="summary-card glass-panel">
-        <div class="summary-glow"></div>
+    <div class="tiers-grid">
+      @for (tier of tiers; track tier.id) {
+      <article
+        class="tier-card glass-panel"
+        [class.popular]="tier.popular"
+        [class.active-tier]="activeTierId() === tier.id"
+        (click)="selectTier(tier.id)"
+      >
+        @if (tier.badge) {
+        <div class="popular-badge">
+          <span>{{ lang.t(tier.badge.en, tier.badge.ru) }}</span>
+        </div>
+        }
 
-        <div class="summary-label">{{ lang.t('ESTIMATED INVESTMENT', 'ОРИЕНТИРОВОЧНЫЙ БЮДЖЕТ') }}</div>
-        <div class="summary-price">
-          <span class="price-value">{{ format(priceMin()) }}</span>
-          <span class="price-sep">—</span>
-          <span class="price-value">{{ format(priceMax()) }}</span>
+        <div class="tier-header">
+          <h3 class="tier-title">{{ lang.t(tier.titleEn, tier.titleRu) }}</h3>
+          <p class="tier-tagline">{{ lang.t(tier.taglineEn, tier.taglineRu) }}</p>
         </div>
 
-        <div class="summary-timeline">
-          <span class="timeline-icon">✦</span>
-          <span>{{ lang.t('Approx.', 'Примерно') }} <strong>{{ totalWeeks() }}</strong> {{ lang.t('weeks', 'нед.') }}</span>
+        <div class="tier-meta">
+          <div class="tier-price-box">
+            <span class="price-label">{{ lang.t('Investment starting from', 'Ориентир бюджета') }}</span>
+            <span class="price-amount">{{ lang.t(tier.priceEn, tier.priceRu) }}</span>
+          </div>
+          <div class="tier-timeline-box">
+            <span class="timeline-label">{{ lang.t('Delivery', 'Сроки') }}</span>
+            <span class="timeline-value">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              {{ lang.t(tier.timelineEn, tier.timelineRu) }}
+            </span>
+          </div>
         </div>
 
-        <div class="summary-divider"></div>
+        <div class="tier-ideal">
+          <span class="ideal-title">{{ lang.t('Ideal for:', 'Для кого:') }}</span>
+          <p class="ideal-text">{{ lang.t(tier.idealForEn, tier.idealForRu) }}</p>
+        </div>
 
-        <ul class="summary-breakdown">
-          <li>
-            <span>{{ lang.t(selectedType().en, selectedType().ru) }}</span>
-            <span>{{ pages() }} {{ lang.t('pages', 'стр.') }}</span>
-          </li>
-          @for (feature of features; track feature.id) {
-            @if (isFeatureSelected(feature.id)) {
+        <div class="tier-divider"></div>
+
+        <div class="tier-features">
+          <span class="features-title">{{ lang.t("What's included:", 'Что входит в формат:') }}</span>
+          <ul class="features-list">
+            @for (feature of (lang.currentLang() === 'EN' ? tier.featuresEn : tier.featuresRu); track feature) {
             <li>
-              <span class="breakdown-feature">{{ feature.icon }} {{ lang.t(feature.en, feature.ru) }}</span>
-              <span>+{{ format(feature.price) }}</span>
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>{{ feature }}</span>
             </li>
             }
-          }
-          @if (rush()) {
-          <li class="breakdown-rush">
-            <span>⚡ {{ lang.t('Priority delivery', 'Приоритетный запуск') }}</span>
-            <span>+30%</span>
-          </li>
-          }
-        </ul>
+          </ul>
+        </div>
 
-        <a routerLink="/contact" class="summary-cta">
-          <span>{{ lang.t('Discuss this project', 'Обсудить проект') }}</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
+        <div class="tier-cta-box">
+          <a routerLink="/contact" class="tier-btn" [class.tier-btn-primary]="tier.popular">
+            <span>{{ lang.t('Select this format', 'Выбрать этот формат') }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+      }
+    </div>
+  </section>
 
-        <p class="summary-note">{{ lang.t('This is an indicative estimate, not a final quote. Every project is unique — let\'s talk through the details together.', 'Это ориентировочная оценка, а не финальная стоимость. Каждый проект уникален — давайте обсудим детали.') }}</p>
+  <!-- Section 2: Interactive Project Matcher / Discovery Compass -->
+  <section id="project-matcher" class="section-block matcher-section">
+    <div class="section-head">
+      <div class="section-kicker">{{ lang.t('INTERACTIVE COMPASS', 'ИНТЕРАКТИВНЫЙ ГИД') }}</div>
+      <h2 class="section-title">{{ lang.t('Match your project in 3 steps', 'Подберите формат под вашу задачу') }}</h2>
+      <p class="section-desc">
+        {{ lang.t(
+          'Select your primary goal, current readiness stage, and chief priority to view a tailored scope recommendation without rigid formula calculations.',
+          'Укажите цель проекта, стадию готовности и главный приоритет — система предложит оптимальный формат, стек и первые шаги.'
+        ) }}
+      </p>
+    </div>
+
+    <div class="matcher-layout">
+      <!-- Steps Column -->
+      <div class="matcher-steps">
+        <!-- Step 1: Goal -->
+        <div class="step-card glass-panel">
+          <div class="step-head">
+            <span class="step-badge">01</span>
+            <h3 class="step-title">{{ lang.t('What are you looking to build?', 'Какая у вас задача?') }}</h3>
+          </div>
+          <div class="options-grid">
+            @for (goal of goals; track goal.id) {
+            <button
+              type="button"
+              class="option-pill"
+              [class.selected]="selectedGoal() === goal.id"
+              (click)="selectedGoal.set(goal.id)"
+            >
+              <div class="pill-top">
+                <span class="pill-title">{{ lang.t(goal.labelEn, goal.labelRu) }}</span>
+                <span class="pill-indicator"></span>
+              </div>
+              <p class="pill-desc">{{ lang.t(goal.descEn, goal.descRu) }}</p>
+            </button>
+            }
+          </div>
+        </div>
+
+        <!-- Step 2: Stage -->
+        <div class="step-card glass-panel">
+          <div class="step-head">
+            <span class="step-badge">02</span>
+            <h3 class="step-title">{{ lang.t('Current stage of readiness', 'В каком состоянии проект?') }}</h3>
+          </div>
+          <div class="options-grid">
+            @for (stage of stages; track stage.id) {
+            <button
+              type="button"
+              class="option-pill"
+              [class.selected]="selectedStage() === stage.id"
+              (click)="selectedStage.set(stage.id)"
+            >
+              <div class="pill-top">
+                <span class="pill-title">{{ lang.t(stage.labelEn, stage.labelRu) }}</span>
+                <span class="pill-indicator"></span>
+              </div>
+              <p class="pill-desc">{{ lang.t(stage.descEn, stage.descRu) }}</p>
+            </button>
+            }
+          </div>
+        </div>
+
+        <!-- Step 3: Priority -->
+        <div class="step-card glass-panel">
+          <div class="step-head">
+            <span class="step-badge">03</span>
+            <h3 class="step-title">{{ lang.t('What matters most right now?', 'Главный приоритет') }}</h3>
+          </div>
+          <div class="options-grid">
+            @for (priority of priorities; track priority.id) {
+            <button
+              type="button"
+              class="option-pill"
+              [class.selected]="selectedPriority() === priority.id"
+              (click)="selectedPriority.set(priority.id)"
+            >
+              <div class="pill-top">
+                <span class="pill-title">{{ lang.t(priority.labelEn, priority.labelRu) }}</span>
+                <span class="pill-indicator"></span>
+              </div>
+              <p class="pill-desc">{{ lang.t(priority.descEn, priority.descRu) }}</p>
+            </button>
+            }
+          </div>
+        </div>
       </div>
-    </aside>
-  </div>
+
+      <!-- Recommendation Result Card (Sticky) -->
+      <aside class="matcher-result-col">
+        <div class="result-card glass-panel">
+          <div class="result-glow"></div>
+
+          <div class="result-kicker">
+            <span class="pulse-dot"></span>
+            <span>{{ lang.t('TAILORED RECOMMENDATION', 'РЕКОМЕНДУЕМЫЙ ФОРМАТ') }}</span>
+          </div>
+
+          <div class="result-tier-header">
+            <h3 class="result-tier-name">{{ lang.t(recommendation().tier.titleEn, recommendation().tier.titleRu) }}</h3>
+            <p class="result-tier-tagline">{{ lang.t(recommendation().tier.taglineEn, recommendation().tier.taglineRu) }}</p>
+          </div>
+
+          <div class="result-specs">
+            <div class="spec-item">
+              <span class="spec-label">{{ lang.t('Budget starting point', 'Ориентир бюджета') }}</span>
+              <span class="spec-value price-highlight">{{ lang.t(recommendation().budgetEn, recommendation().budgetRu) }}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">{{ lang.t('Estimated timeline', 'Ожидаемый срок') }}</span>
+              <span class="spec-value">{{ lang.t(recommendation().timelineEn, recommendation().timelineRu) }}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">{{ lang.t('Recommended stack', 'Рекомендуемый стек') }}</span>
+              <span class="spec-value stack-value">{{ lang.t(recommendation().stackEn, recommendation().stackRu) }}</span>
+            </div>
+          </div>
+
+          <div class="result-divider"></div>
+
+          <div class="result-advice">
+            <div class="advice-head">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              <span>{{ lang.t('Suggested next step', 'Рекомендуемый первый шаг') }}</span>
+            </div>
+            <p class="advice-body">{{ lang.t(recommendation().adviceEn, recommendation().adviceRu) }}</p>
+          </div>
+
+          <a routerLink="/contact" class="result-cta">
+            <span>{{ lang.t('Discuss this project', 'Обсудить проект') }}</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+
+          <p class="result-disclaimer">
+            {{ lang.t(
+              'Real projects are scoped collaboratively to your exact technical and business goals. No hidden surprises.',
+              'Финальный скоуп и смета фиксируются на основе ваших задач без скрытых доплат и неприятных сюрпризов.'
+            ) }}
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Section 3: Cost Transparency Pillars -->
+  <section class="section-block">
+    <div class="section-head">
+      <div class="section-kicker">{{ lang.t('TRANSPARENT PRICING', 'ПРОЗРАЧНАЯ ОЦЕНКА') }}</div>
+      <h2 class="section-title">{{ lang.t('How development costs are formed', 'Из чего на самом деле складывается смета') }}</h2>
+      <p class="section-desc">
+        {{ lang.t(
+          'Instead of arbitrary price tags per button or form, real software investment is shaped by four architectural drivers.',
+          'Вместо случайных наценок за отдельные кнопки или поля, стоимость разработки определяется четырьмя ключевыми факторами.'
+        ) }}
+      </p>
+    </div>
+
+    <div class="pillars-grid">
+      @for (pillar of costPillars; track pillar.id) {
+      <div class="pillar-card glass-panel">
+        <div class="pillar-icon-box">
+          @if (pillar.icon === 'layers') {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+          } @else if (pillar.icon === 'sparkle') {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+          </svg>
+          } @else if (pillar.icon === 'api') {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+            <line x1="12" y1="2" x2="12" y2="22"/>
+          </svg>
+          } @else {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          }
+        </div>
+        <h3 class="pillar-title">{{ lang.t(pillar.titleEn, pillar.titleRu) }}</h3>
+        <p class="pillar-desc">{{ lang.t(pillar.descEn, pillar.descRu) }}</p>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Section 4: Standards Included by Default -->
+  <section class="section-block">
+    <div class="section-head">
+      <div class="section-kicker">{{ lang.t('QUALITY BASELINE', 'СТАНДАРТЫ КАЧЕСТВА') }}</div>
+      <h2 class="section-title">{{ lang.t('Included in every project by default', 'Что всегда входит в любой проект') }}</h2>
+      <p class="section-desc">
+        {{ lang.t(
+          'These non-negotiable engineering standards are baked into all packages with zero extra charges.',
+          'Базовые профессиональные стандарты, которые включены в любой проект по умолчанию без доплат.'
+        ) }}
+      </p>
+    </div>
+
+    <div class="standards-grid">
+      @for (std of includedStandards; track std.titleEn) {
+      <div class="standard-card glass-panel">
+        <div class="standard-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="standard-content">
+          <h3 class="standard-title">{{ lang.t(std.titleEn, std.titleRu) }}</h3>
+          <p class="standard-desc">{{ lang.t(std.descEn, std.descRu) }}</p>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Section 5: Pricing FAQ Accordion -->
+  <section class="section-block">
+    <div class="section-head">
+      <div class="section-kicker">{{ lang.t('COMMON QUESTIONS', 'ЧАСТЫЕ ВОПРОСЫ') }}</div>
+      <h2 class="section-title">{{ lang.t('Everything you need to know', 'Вопросы об оплате и сотрудничестве') }}</h2>
+    </div>
+
+    <div class="faq-container">
+      @for (faq of faqs; track faq.id) {
+      <div class="faq-item glass-panel" [class.open]="activeFaqId() === faq.id">
+        <button type="button" class="faq-question" (click)="toggleFaq(faq.id)">
+          <span class="faq-q-text">{{ lang.t(faq.questionEn, faq.questionRu) }}</span>
+          <span class="faq-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </button>
+        @if (activeFaqId() === faq.id) {
+        <div class="faq-answer animate-fade-in">
+          <p>{{ lang.t(faq.answerEn, faq.answerRu) }}</p>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Section 6: Bottom Call To Action Banner -->
+  <section class="estimate-cta-banner glass-panel">
+    <div class="banner-content">
+      <div class="banner-badge">✦ {{ lang.t('GET A PERSONALIZED ESTIMATE', 'ИНДИВИДУАЛЬНЫЙ РАСЧЕТ') }}</div>
+      <h2 class="banner-title">{{ lang.t('Have a specific project in mind?', 'Готовы обсудить вашу задачу?') }}</h2>
+      <p class="banner-desc">
+        {{ lang.t(
+          'Share your ideas, goals, or existing Figma designs. I will review them and send back a detailed scoping breakdown within 24 hours.',
+          'Расскажите о вашей идее или прикрепите ссылку на макеты. Я изучу детали и подготовлю точный расчет скоупа и сроков в течение 24 часов.'
+        ) }}
+      </p>
+    </div>
+    <div class="banner-action">
+      <a routerLink="/contact" class="btn-primary banner-btn">
+        <span>{{ lang.t('Start Project Discussion', 'Обсудить проект') }}</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
 </div>
