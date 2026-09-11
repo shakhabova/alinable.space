@@ -87,7 +87,7 @@ export class Galaxy {
         { time: '11:00', en: 'Write code and fix bugs', ru: 'Пишу код и чиню баги' },
         { time: '13:00', en: 'Team sync (a must)', ru: 'Созвон с командой' },
         { time: '15:00', en: 'A bit more code and edits', ru: 'Ещё немного кода и правки' },
-        { time: '17:30', en: "Check nothing's broken 😅", ru: 'Проверяю, что ничего не сломал 😅' },
+        { time: '17:30', en: "Check nothing's broken", ru: 'Проверяю, что ничего не сломал' },
       ],
       levelEn: 'Junior',
       levelRu: 'Junior',
