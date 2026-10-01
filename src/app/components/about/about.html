@@ -10,7 +10,7 @@
       <span class="star animate-pulse-star">✦</span>
       <p>{{ lang.t('ABOUT ME', 'ОБО МНЕ') }}</p>
     </div>
-    <h1 class="title">{{ lang.t('Bridging engineering precision &', 'Объединяю инженерную точность и') }}<br class="desktop-only"> <em>{{ lang.t('product leadership', 'продуктовое лидерство') }}</em></h1>
+    <h1 class="title">{{ lang.t('Bridging engineering precision &', 'Объединяю инженерную точность и') }}<br class="desktop-only"> <em>{{ lang.t('care for the user experience', 'внимание к пользовательскому опыту') }}</em></h1>
     
     <div class="bio-grid">
       <div class="bio-text glass-panel">
@@ -126,6 +126,7 @@
   </div>
 
   <!-- Work Experience Section -->
+  <!--
   <section class="experience-section">
     <div class="section-header">
       <h2 class="section-title">{{ lang.t('WORK EXPERIENCE', 'ОПЫТ РАБОТЫ') }}</h2>
@@ -134,7 +135,6 @@
     </div>
 
     <div class="timeline">
-      <!-- Job 1 -->
       <div class="timeline-item glass-panel">
         <div class="timeline-glow"></div>
         <div class="timeline-date">2024 — {{ lang.t('Present', 'н. в.') }}</div>
@@ -157,7 +157,6 @@
         </div>
       </div>
 
-      <!-- Job 2 -->
       <div class="timeline-item glass-panel">
         <div class="timeline-glow"></div>
         <div class="timeline-date">2022 — 2024</div>
@@ -180,6 +179,8 @@
       </div>
     </div>
   </section>
+
+  -->
 
   <!-- Detailed Personal Projects Section -->
   <section class="personal-projects-section">
@@ -216,7 +217,6 @@
           <!-- Structured Highlight Cards -->
           <div class="project-highlight-grid">
             <div class="highlight-card glass-panel">
-              <div class="highlight-icon">📊</div>
               <div class="highlight-content">
                 <h4>{{ lang.t('Fasting, Taraweeh & Quran Tracking', 'Учёт постов, таравиха и Корана') }}</h4>
                 <p>{{ lang.t('Daily logging for fasts (completed vs. missed), Taraweeh prayers, and Quran recitation progress with scheduled push notifications.', 'Отметка соблюдённых и пропущенных постов, молитвы таравих, прогресс чтения Корана и автоматические ежедневные напоминания.') }}</p>
@@ -224,7 +224,6 @@
             </div>
 
             <div class="highlight-card glass-panel">
-              <div class="highlight-icon">⚡</div>
               <div class="highlight-content">
                 <h4>{{ lang.t('Scaled to 4,500+ Active Users', 'Масштабирование под 4,500+ чел.') }}</h4>
                 <p>{{ lang.t('Handled viral organic growth with zero advertising; refactored Node.js backend and cron services for low latency and concurrent user traffic.', 'Органический рост без платной рекламы; оптимизация асинхронной обработки, фоновых cron-рассылок и архитектуры под возросшую нагрузку.') }}</p>
@@ -232,10 +231,9 @@
             </div>
 
             <div class="highlight-card glass-panel">
-              <div class="highlight-icon">🔄</div>
               <div class="highlight-content">
                 <h4>{{ lang.t('Year-Round Product Evolution', 'Круглогодичное развитие продукта') }}</h4>
-                <p>{{ lang.t('Transformed post-Ramadan into an ongoing daily assistant: interactive Azkar counters, custom spiritual habits, and active CI/CD feature rollout.', 'По просьбам пользователей бот стал постоянным трекером духовных практик: интерактивные счётчики азкаров, трекер Корана и регулярные релизы новых фич.') }}</p>
+                <p>{{ lang.t('Transformed post-Ramadan into an ongoing daily assistant: interactive Azkar counters, custom spiritual habits, and active CI/CD feature rollout.', 'По просьбам пользователей бот стал постоянным трекером: интерактивные счётчики азкаров, трекер Корана и регулярные релизы новых фич.') }}</p>
               </div>
             </div>
           </div>
@@ -254,43 +252,16 @@
           </a>
         </div>
 
-        <!-- CSS Mockup visual column -->
-        <div class="showcase-visual glass-panel">
-          <div class="mockup-container tracker-mockup">
-            <div class="mockup-grid-bg"></div>
-
-            <!-- Telegram Glass App Frame -->
-            <div class="tg-app-frame glass-panel">
-              <!-- Telegram Header Bar -->
-              <div class="tg-header">
-                <div class="tg-user-info">
-                  <div class="tg-avatar">
-                    <span>🌙</span>
-                  </div>
-                  <div class="tg-user-meta">
-                    <div class="tg-title-row">
-                      <span class="tg-name">Ramadan Tracker Bot</span>
-                      <span class="tg-badge">bot</span>
-                    </div>
-                    <span class="tg-status">4,500+ {{ lang.t('active users', 'пользователей') }}</span>
-                  </div>
-                </div>
-                <div class="tg-actions">
-                  <span class="tg-action-dot"></span>
-                  <span class="tg-action-dot"></span>
-                  <span class="tg-action-dot"></span>
-                </div>
-              </div>
-
-              <!-- Telegram Chat Screen Body with background image and UI cards -->
-              <div class="tg-chat-body">
-                <img src="/tracker-bg.png" alt="Ramadan Tracker Bot Showcase" class="tracker-project-img">
-                <div class="tg-overlay-scrim"></div>
-
-                <!-- Floating Telegram Message Card -->
+        <figure class="project-preview tracker-preview">
+          <div class="project-preview-header">
+            <span class="project-preview-name">Ramadan Tracker</span>
+            <span class="project-preview-platform">Telegram Bot</span>
+          </div>
+          <div class="project-preview-artwork tracker-preview-artwork">
+            <img src="/tracker-bg.png" alt="Ramadan Tracker Bot Showcase" class="tracker-preview-image">
                 <div class="tg-message-bubble glass-panel">
                   <div class="tg-msg-header">
-                    <span class="tg-msg-title">🌙 Ramadan Tracker</span>
+                    <span class="tg-msg-title">Ramadan Tracker</span>
                     <span class="tg-msg-time">21:45</span>
                   </div>
                   <p class="tg-msg-text">
@@ -303,32 +274,27 @@
                   <!-- Inline keyboard mockup -->
                   <div class="tg-inline-keyboard">
                     <div class="tg-btn-row">
-                      <div class="tg-btn"><span>🕌 {{ lang.t('Fasting & Taraweeh', 'Пост & Таравих') }}</span></div>
-                      <div class="tg-btn"><span>📖 {{ lang.t('Quran Goals', 'Чтение Корана') }}</span></div>
+                      <div class="tg-btn"><span>{{ lang.t('Fasting & Taraweeh', 'Пост & Таравих') }}</span></div>
+                      <div class="tg-btn"><span>{{ lang.t('Quran Goals', 'Чтение Корана') }}</span></div>
                     </div>
                     <div class="tg-btn-row">
-                      <div class="tg-btn"><span>📿 {{ lang.t('Daily Azkars', 'Азкары & Зикры') }}</span></div>
-                      <div class="tg-btn"><span>📊 {{ lang.t('My Stats', 'Моя статистика') }}</span></div>
+                      <div class="tg-btn"><span>{{ lang.t('Daily Azkars', 'Азкары & Зикры') }}</span></div>
+                      <div class="tg-btn"><span>{{ lang.t('My Stats', 'Моя статистика') }}</span></div>
                     </div>
                   </div>
                 </div>
-
-                <!-- Floating Traction Pill -->
-                <div class="tg-traction-floating glass-panel">
-                  <div class="traction-stat">
-                    <span class="traction-val">4.5K+</span>
-                    <span class="traction-label">{{ lang.t('Active Users', 'Аудитория') }}</span>
-                  </div>
-                  <div class="traction-divider"></div>
-                  <div class="traction-stat">
-                    <span class="traction-val">24/7</span>
-                    <span class="traction-label">{{ lang.t('Year-Round', 'Круглый год') }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
+          <figcaption class="project-preview-caption">
+            <div class="project-preview-detail">
+              <span class="project-preview-label">{{ lang.t('AUDIENCE', 'АУДИТОРИЯ') }}</span>
+              <span>4,500+ {{ lang.t('active users', 'пользователей') }}</span>
+            </div>
+            <div class="project-preview-detail">
+              <span class="project-preview-label">{{ lang.t('PLATFORM', 'ПЛАТФОРМА') }}</span>
+              <span>Telegram</span>
+            </div>
+          </figcaption>
+        </figure>
       </div>
 
       <!-- Project: Dua Journal App -->
@@ -357,7 +323,6 @@
           <!-- Structured Highlight Cards -->
           <div class="project-highlight-grid">
             <div class="highlight-card glass-panel">
-              <div class="highlight-icon">📱</div>
               <div class="highlight-content">
                 <h4>{{ lang.t('Telegram Mini App + Web Platform', 'Telegram Mini App + Веб-платформа') }}</h4>
                 <p>{{ lang.t('Zero-friction instant launch inside Telegram with seamless real-time sync to a full-screen desktop web application.', 'Запуск в один клик прямо внутри Telegram без скачивания и регистрации, синхронизированный с веб-версией.') }}</p>
@@ -365,23 +330,14 @@
             </div>
 
             <div class="highlight-card glass-panel">
-              <div class="highlight-icon">📖</div>
               <div class="highlight-content">
                 <h4>{{ lang.t('Curated Quran & Sunnah Library', 'Сборник дуа из Корана и Сунны') }}</h4>
-                <p>{{ lang.t('Authentic catalog with verified Arabic text, transliteration, translations, and category tagging.', 'Каталог аутентичных мольб с выверенной типографикой, арабским текстом, транслитерацией, переводом и категориями.') }}</p>
+                <p>{{ lang.t('Authentic catalog with verified Arabic text, transliteration, translations, and category tagging.', 'Каталог дуа с выверенной типографикой, арабским текстом, транслитерацией, переводом и категориями.') }}</p>
               </div>
             </div>
 
-            <div class="highlight-card glass-panel">
-              <div class="highlight-icon">🎨</div>
-              <div class="highlight-content">
-                <h4>{{ lang.t('Card Creator & Social Sharing', 'Конструктор карточек и шеринг') }}</h4>
-                <p>{{ lang.t('Create custom aesthetic cards, style fonts and atmospheric backgrounds, and export to share with others.', 'Создание собственных карточек, кастомизация визуала и шрифтов, быстрый экспорт и шеринг с близкими.') }}</p>
-              </div>
-            </div>
 
             <div class="highlight-card glass-panel">
-              <div class="highlight-icon">✍️</div>
               <div class="highlight-content">
                 <h4>{{ lang.t('Personal Notes & Spiritual Archive', 'Личные комментарии и архив') }}</h4>
                 <p>{{ lang.t('Bookmark favorite supplications, attach personal reflections and notes, and organize a private archive.', 'Добавление карточек себе в избранное, ведение личных заметок к дуа и структурированный архив.') }}</p>
@@ -398,44 +354,31 @@
             <span class="tech-tag glass-panel">TypeScript</span>
           </div>
 
-          <div class="project-cta-button glass-panel status-button" style="pointer-events: none; opacity: 0.85;">
-            <span class="cta-text">✦ {{ lang.t('IN ACTIVE DEVELOPMENT', 'В АКТИВНОЙ РАЗРАБОТКЕ') }}</span>
-          </div>
+          <a href="https://dua-journal.com" target="_blank" rel="noopener noreferrer" class="project-cta-button glass-panel">
+            <span class="cta-text">{{ lang.t('OPEN DUA JOURNAL', 'ОТКРЫТЬ DUA JOURNAL') }} ↗</span>
+          </a>
         </div>
 
         <!-- CSS Mockup visual column -->
-        <div class="showcase-visual glass-panel">
-          <div class="mockup-container dua-mockup">
-            <div class="mockup-grid-bg"></div>
-
-            <!-- Browser Glass Mockup Frame -->
-            <div class="dua-screenshot-frame glass-panel">
-              <div class="frame-header">
-                <div class="frame-dots">
-                  <span class="frame-dot dot-red"></span>
-                  <span class="frame-dot dot-yellow"></span>
-                  <span class="frame-dot dot-green"></span>
-                </div>
-                <div class="frame-search-bar">duajournal.app · TMA</div>
-                <div class="tma-badge">
-                  <span>●</span>
-                  <span>Mini App</span>
-                </div>
-              </div>
-              <div class="frame-body">
-                <img src="/dua-bg.png" alt="Dua Journal App Showcase" class="dua-project-img">
-                <div class="dua-floating-chip chip-top glass-panel">
-                  <span class="chip-star">✦</span>
-                  <span>{{ lang.t('Instant TMA Launch', 'Без скачивания · В 1 клик') }}</span>
-                </div>
-                <div class="dua-floating-chip chip-bottom glass-panel">
-                  <span class="chip-icon">📖</span>
-                  <span>{{ lang.t('Quran & Sunnah Archive', 'Сборник из Корана и Сунны') }}</span>
-                </div>
-              </div>
-            </div>
+        <figure class="project-preview">
+          <div class="project-preview-header">
+            <span class="project-preview-name">Dua Journal</span>
+            <span class="project-preview-platform">Web / Mini App</span>
           </div>
-        </div>
+          <div class="project-preview-artwork dua-preview-artwork">
+            <img src="/dua-journal-cover.png" alt="Dua Journal — светлая и тёмная темы приложения" class="dua-project-img">
+          </div>
+          <figcaption class="project-preview-caption">
+            <div class="project-preview-detail">
+              <span class="project-preview-label">{{ lang.t('ACCESS', 'ДОСТУП') }}</span>
+              <span>{{ lang.t('One tap. No downloads.', 'В один клик. Без скачивания.') }}</span>
+            </div>
+            <div class="project-preview-detail">
+              <span class="project-preview-label">{{ lang.t('COLLECTION', 'КОЛЛЕКЦИЯ') }}</span>
+              <span>{{ lang.t('Quran & Sunnah', 'Коран и Сунна') }}</span>
+            </div>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
