@@ -1548,6 +1548,8 @@
 
   .showcase-row {
     flex-direction: column !important;
+    /* Keep decorative glows inside the card instead of widening the page. */
+    overflow: hidden;
     gap: 2rem;
     min-height: auto;
     padding: 1.8rem;
@@ -1564,7 +1566,8 @@
 
   .showcase-details {
     width: 100%;
-    min-width: auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .showcase-visual {
@@ -1603,7 +1606,7 @@
   }
 
   .bio-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
 
