@@ -619,6 +619,16 @@
     --frame-body-height: 248px;
   }
 
+  /* Decorative backgrounds must fit the page on narrow screens. */
+  .portfolio-page::before {
+    left: 0;
+    right: 0;
+  }
+
+  .portfolio-page::after {
+    width: 85%;
+  }
+
   .portfolio-intro {
     max-width: 100%;
   }
@@ -638,6 +648,7 @@
 
   .showcase-row {
     flex-direction: column !important;
+    overflow: hidden;
     gap: 2rem;
     min-height: auto;
     padding: 1.8rem;
@@ -654,7 +665,8 @@
 
   .showcase-details {
     width: 100%;
-    min-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
     order: 2;
     gap: 1.1rem;
   }
@@ -675,7 +687,7 @@
 
   .showcase-visual {
     width: 100%;
-    min-width: 100%;
+    min-width: 0;
     height: 280px;
     order: 1;
     border: none;
