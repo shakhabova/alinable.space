@@ -11,10 +11,12 @@
   gap: 0.8rem;
 }
 
-.star {
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  line-height: 1;
+.subtitle-rule {
+  width: 20px;
+  height: 1px;
+  margin-top: 0.52rem;
+  flex-shrink: 0;
+  background-color: var(--text-muted);
 }
 
 .subtitle p {

@@ -269,7 +269,9 @@
 
 .footer-icon {
   color: #907eb5;
-  font-size: 0.95rem;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 .widget-details {

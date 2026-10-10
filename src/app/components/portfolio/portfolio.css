@@ -49,27 +49,6 @@
   z-index: 2;
 }
 
-/* Twinkling pulse for subtitle star */
-.animate-pulse-star {
-  animation: pulse-star-shimmer 3s ease-in-out infinite;
-}
-
-@keyframes pulse-star-shimmer {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.5;
-    text-shadow: none;
-  }
-
-  50% {
-    transform: scale(1.3);
-    opacity: 1;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(144, 126, 181, 0.5);
-  }
-}
-
 /* Decorative Cosmic Star Nodes */
 .cosmic-star {
   position: absolute;
@@ -124,14 +103,15 @@
 
 .subtitle {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.8rem;
 }
 
-.star {
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  line-height: 1;
+.subtitle-rule {
+  width: 20px;
+  height: 1px;
+  flex-shrink: 0;
+  background-color: var(--text-muted);
 }
 
 .subtitle p {
