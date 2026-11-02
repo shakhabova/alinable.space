@@ -9,6 +9,7 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'about', component: About },
   { path: 'portfolio', component: Portfolio },
+  { path: 'ramadan', loadComponent: () => import('./components/ramadan/ramadan').then(m => m.Ramadan) },
   // Temporarily hidden; keep the page component for later restoration.
   { path: 'estimate', redirectTo: '', pathMatch: 'full' },
   { path: 'galaxy', component: Galaxy },

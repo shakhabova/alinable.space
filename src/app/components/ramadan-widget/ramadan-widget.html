@@ -1,0 +1,127 @@
+<a
+  routerLink="/ramadan"
+  class="ramadan-card animate-fade-in delay-150"
+  [attr.aria-label]="
+    lang.t(
+      'Countdown to Ramadan. Learn about the upcoming app',
+      'Отсчёт до Рамадана. Узнать о новом приложении'
+    )
+  "
+>
+  <div class="ramadan-intro">
+    <div class="crescent-art" aria-hidden="true">
+      <svg class="crescent-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="crescentGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff8e7" />
+            <stop offset="45%" stop-color="#f5d77f" />
+            <stop offset="100%" stop-color="#c89d3c" />
+          </linearGradient>
+          <radialGradient id="crescentAura" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(245, 215, 127, 0.25)" />
+            <stop offset="70%" stop-color="rgba(245, 215, 127, 0.04)" />
+            <stop offset="100%" stop-color="transparent" />
+          </radialGradient>
+        </defs>
+
+        <!-- Ambient celestial aura -->
+        <circle cx="24" cy="24" r="22" fill="url(#crescentAura)" />
+
+        <!-- Fine astronomical orbit rings -->
+        <circle
+          cx="24"
+          cy="24"
+          r="21.5"
+          stroke="rgba(245, 215, 127, 0.25)"
+          stroke-width="0.75"
+          stroke-dasharray="2 3"
+        />
+        <circle cx="24" cy="24" r="16.5" stroke="rgba(255, 255, 255, 0.06)" stroke-width="0.75" />
+
+        <!-- Slender crescent moon with 4-point diamond star -->
+        <g transform="rotate(-20 24 24)">
+          <path
+            d="M 24 10.5 A 13.5 13.5 0 0 0 24 37.5 A 15.2 15.2 0 0 1 24 10.5 Z"
+            fill="url(#crescentGold)"
+          />
+          <path
+            d="M 32 12 C 32 15 33.5 16.5 36.5 17 C 33.5 17.5 32 19 32 22 C 32 19 30.5 17.5 27.5 17 C 30.5 16.5 32 15 32 12 Z"
+            fill="#fffdf5"
+          />
+          <circle cx="32" cy="17" r="0.7" fill="#ffffff" />
+        </g>
+
+        <!-- Distant micro-stars -->
+        <circle cx="14" cy="13" r="0.8" fill="#f5d77f" opacity="0.65" />
+        <circle cx="36" cy="35" r="0.6" fill="#f5d77f" opacity="0.5" />
+      </svg>
+    </div>
+    <div class="ramadan-copy">
+      <div class="ramadan-eyebrow">
+        <span class="live-dot" aria-hidden="true"></span>{{ lang.t('RAMADAN 1448', 'РАМАДАН 1448')
+        }}<span class="edition-year">/ 2027</span>
+      </div>
+      <h3>{{ lang.t('A month worth waiting for', 'В ожидании Рамадана') }}</h3>
+      <p>
+        {{
+          lang.t(
+            'Time to prepare your heart and your habits.',
+            'Время подготовить сердце и вернуться к полезным привычкам.'
+          )
+        }}
+      </p>
+    </div>
+  </div>
+
+  <div class="countdown-panel">
+    <div class="countdown-caption">
+      {{ lang.t('UNTIL THE HOLY MONTH', 'ДО СВЯЩЕННОГО МЕСЯЦА') }}
+    </div>
+    <div class="timer-display" role="timer" aria-live="off">
+      <div class="time-unit days-unit">
+        <span class="time-value">{{ ramadan.countdown().days }}</span
+        ><span class="time-label">{{
+          ramadan.getDayLabel(lang.currentLang() === 'RU', ramadan.countdown().days)
+        }}</span>
+      </div>
+      <span class="time-separator" aria-hidden="true">:</span>
+      <div class="time-unit">
+        <span class="time-value">{{ pad(ramadan.countdown().hours) }}</span
+        ><span class="time-label">{{ lang.t('hours', 'часов') }}</span>
+      </div>
+      <span class="time-separator" aria-hidden="true">:</span>
+      <div class="time-unit">
+        <span class="time-value">{{ pad(ramadan.countdown().minutes) }}</span
+        ><span class="time-label">{{ lang.t('minutes', 'минут') }}</span>
+      </div>
+      <span class="time-separator" aria-hidden="true">:</span>
+      <div class="time-unit">
+        <span class="time-value">{{ pad(ramadan.countdown().seconds) }}</span
+        ><span class="time-label">{{ lang.t('seconds', 'секунд') }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget-footer">
+    <span class="project-note">{{
+      lang.t(
+        'Something new is coming this Ramadan',
+        'К этому Рамадану готовится запуск нового проекта'
+      )
+    }}</span>
+    <span class="widget-action"
+      >{{ lang.t('Explore the project', 'Узнать о проекте')
+      }}<svg
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <rect x="6" y="2" width="12" height="20" rx="3" />
+        <path d="M10 5h4M11 19h2" /></svg
+    ></span>
+  </div>
+</a>

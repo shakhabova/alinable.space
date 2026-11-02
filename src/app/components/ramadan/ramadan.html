@@ -1,0 +1,426 @@
+<div class="ramadan-page animate-fade-in delay-100">
+  <!-- Cosmic Background Glows & Stars -->
+  <div class="cosmic-glow glow-top"></div>
+  <div class="cosmic-glow glow-bottom"></div>
+  <div class="cosmic-star star-1">✦</div>
+  <div class="cosmic-star star-2">✦</div>
+  <div class="cosmic-star star-3">✦</div>
+  <div class="cosmic-star star-4">✦</div>
+
+  <!-- Breadcrumb / Back Link -->
+  <div class="back-nav">
+    <a routerLink="/" class="back-link">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      <span>{{ lang.t('BACK TO HOME', 'НА ГЛАВНУЮ') }}</span>
+    </a>
+  </div>
+
+  <!-- Hero Header -->
+  <header class="ramadan-hero">
+    <div class="subtitle-wrap">
+      <span class="crescent-bullet">
+        <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#f5d77f" />
+        </svg>
+      </span>
+      <p class="subtitle-text">
+        {{ lang.t('COUNTDOWN TO RAMADAN 1448 AH', 'ОТСЧЕТ ДО РАМАДАНА 1448 Г. ХИДЖРЫ') }}
+      </p>
+    </div>
+
+    <h1 class="hero-title">
+      <span>{{ lang.t('Awaiting Ramadan', 'В ожидании Рамадана') }}</span>
+      <em>{{
+        lang.t('A Month to Prepare For with Intention', 'Месяца, к которому хочется подготовиться')
+      }}</em>
+    </h1>
+
+    <p class="hero-desc">
+      {{
+        lang.t(
+          'Ramadan is just around the corner. A dedicated time to gently return to meaningful habits, reconnect with the
+      Quran, and prepare for the upcoming month.',
+          'До Рамадана осталось совсем немного. Это время, когда можно постепенно возвращаться к полезным привычкам, уделять
+      больше внимания Корану и подготовиться к предстоящему месяцу.'
+        )
+      }}
+    </p>
+  </header>
+
+  <!-- Big Interactive Countdown Display -->
+  <section class="countdown-section">
+    <div class="countdown-grid">
+      <!-- Days -->
+      <div class="time-card glass-panel highlight-card">
+        <div class="card-glow"></div>
+        <div class="time-value">{{ ramadan.countdown().days }}</div>
+        <div class="time-label">
+          {{
+            ramadan.getDayLabel(lang.currentLang() === 'RU', ramadan.countdown().days).toUpperCase()
+          }}
+        </div>
+      </div>
+
+      <!-- Hours -->
+      <div class="time-card glass-panel">
+        <div class="time-value">{{ pad(ramadan.countdown().hours) }}</div>
+        <div class="time-label">
+          {{
+            ramadan
+              .getHourLabel(lang.currentLang() === 'RU', ramadan.countdown().hours)
+              .toUpperCase()
+          }}
+        </div>
+      </div>
+
+      <!-- Minutes -->
+      <div class="time-card glass-panel">
+        <div class="time-value">{{ pad(ramadan.countdown().minutes) }}</div>
+        <div class="time-label">
+          {{
+            ramadan
+              .getMinuteLabel(lang.currentLang() === 'RU', ramadan.countdown().minutes)
+              .toUpperCase()
+          }}
+        </div>
+      </div>
+
+      <!-- Seconds -->
+      <div class="time-card glass-panel">
+        <div class="time-value accent-seconds">{{ pad(ramadan.countdown().seconds) }}</div>
+        <div class="time-label">
+          {{
+            ramadan
+              .getSecondLabel(lang.currentLang() === 'RU', ramadan.countdown().seconds)
+              .toUpperCase()
+          }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Target Date Note -->
+    <div class="target-date-box glass-panel">
+      <div class="target-icon">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+      </div>
+      <div class="target-info">
+        <span class="target-label">{{ lang.t('ESTIMATED ARRIVAL', 'ОРИЕНТИРОВОЧНАЯ ДАТА') }}</span>
+        <p class="target-text">
+          {{
+            lang.t(
+              'Expected start: Evening of February 7 / February 8, 2027 (1 Ramadan 1448 AH). Exact date is determined by
+          local crescent moon sighting and may vary across countries.',
+              'Ориентировочное начало: вечер 7 февраля / 8 февраля 2027 г. (1 Рамадан 1448 г. по хиджре). Точная дата
+          утверждается по наблюдению серпа новой луны и может отличаться в разных странах.'
+            )
+          }}
+        </p>
+      </div>
+      <button class="share-btn glass-panel" type="button" (click)="copyLink()">
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+        </svg>
+        <span>{{
+          copied() ? lang.t('COPIED!', 'СКОПИРОВАНО!') : lang.t('SHARE LINK', 'ПОДЕЛИТЬСЯ')
+        }}</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Project Teaser Section: "небольшая отсылка к тому что выйдет мой новый проект к рамадану" -->
+  <section class="teaser-section glass-panel">
+    <div class="teaser-ambient-glow"></div>
+
+    <div class="teaser-badge-row">
+      <span class="teaser-badge">
+        <span class="badge-sparkle"></span>
+        {{ lang.t('NEW PROJECT · RAMADAN 2027', 'НОВЫЙ ПРОЕКТ · РАМАДАН 2027') }}
+      </span>
+      <span class="teaser-release-target">{{
+        lang.t('iOS & ANDROID · 2027', 'iOS И ANDROID · 2027')
+      }}</span>
+    </div>
+
+    <div class="teaser-layout">
+      <div class="teaser-content">
+        <h2 class="teaser-title">
+          {{ lang.t('From a Telegram Bot', 'От Telegram-бота') }}<br />
+          <em>{{ lang.t('to a full-fledged mobile app', 'к полноценному приложению') }}</em>
+        </h2>
+
+        <p class="teaser-paragraph">
+          {{
+            lang.t(
+              'Last Ramadan, I launched a Telegram bot to help track fasting, Quran reading, and daily worship routines.',
+              'В прошлом Рамадане я запустила Telegram-бота, который помогал отслеживать пост, чтение Корана и не забывать о
+          ежедневных поклонениях.'
+            )
+          }}
+        </p>
+
+        <p class="teaser-paragraph">
+          {{
+            lang.t(
+              'Now I am working on its evolution — a standalone mobile app for iOS and Android.',
+              'Теперь я работаю над его продолжением — отдельным мобильным приложением для iOS и Android.'
+            )
+          }}
+        </p>
+
+        <p class="teaser-paragraph">
+          {{
+            lang.t(
+              'I want to preserve everything useful from the bot and make it even more convenient: with an integrated
+          calendar, trackers, personal statistics, and customizable reminders.',
+              'Хочу сохранить всё полезное, что уже есть в боте, и сделать его удобнее: с календарём, трекерами, личной
+          статистикой и напоминаниями, которые можно настроить под себя.'
+            )
+          }}
+        </p>
+
+        <p class="teaser-paragraph">
+          {{
+            lang.t(
+              'The core idea remains the same — a simple tool that helps you stay on track with your habits during Ramadan,
+          free from clutter and digital distractions.',
+              'Главная идея остаётся прежней — простой инструмент, который помогает следить за своими привычками в течение
+          Рамадана, без лишних функций и отвлекающих элементов.'
+            )
+          }}
+        </p>
+
+        <!-- Feature Pills Bar -->
+        <div class="teaser-feature-bar glass-panel">
+          <span class="feature-item">
+            <span class="feature-dot"></span>
+            {{ lang.t('Fasting', 'Пост') }}
+          </span>
+          <span class="feature-sep">·</span>
+          <span class="feature-item">
+            <span class="feature-dot"></span>
+            {{ lang.t('Taraweeh', 'Таравих') }}
+          </span>
+          <span class="feature-sep">·</span>
+          <span class="feature-item">
+            <span class="feature-dot"></span>
+            {{ lang.t('Quran', 'Коран') }}
+          </span>
+          <span class="feature-sep">·</span>
+          <span class="feature-item">
+            <span class="feature-dot"></span>
+            {{ lang.t('Reminders', 'Напоминания') }}
+          </span>
+        </div>
+
+        <!-- Development Milestones -->
+        <div class="milestones-card glass-panel">
+          <div class="milestone-item completed">
+            <div class="milestone-dot">✓</div>
+            <div class="milestone-info">
+              <span class="milestone-name">{{
+                lang.t('Concept & UX Wireframing', 'Концепция и проектирование UX')
+              }}</span>
+              <span class="milestone-status">{{ lang.t('Completed', 'Завершено') }}</span>
+            </div>
+          </div>
+          <div class="milestone-divider"></div>
+          <div class="milestone-item completed">
+            <div class="milestone-dot">✓</div>
+            <div class="milestone-info">
+              <span class="milestone-name">{{
+                lang.t(
+                  'Visual Design & Design System',
+                  'Визуальная концепция и
+                дизайн-система'
+                )
+              }}</span>
+              <span class="milestone-status">{{ lang.t('Completed', 'Завершено') }}</span>
+            </div>
+          </div>
+          <div class="milestone-divider"></div>
+          <div class="milestone-item active">
+            <div class="milestone-dot pulse">⚙</div>
+            <div class="milestone-info">
+              <span class="milestone-name">{{
+                lang.t(
+                  'Frontend & Backend Architecture',
+                  'Фронтенд и архитектура
+                приложения'
+                )
+              }}</span>
+              <span class="milestone-status in-progress">{{
+                lang.t('In Active Development', 'В активной разработке')
+              }}</span>
+            </div>
+          </div>
+          <div class="milestone-divider"></div>
+          <div class="milestone-item upcoming">
+            <div class="milestone-dot">✦</div>
+            <div class="milestone-info">
+              <span class="milestone-name">{{ lang.t('Public Launch', 'Публичный запуск') }}</span>
+              <span class="milestone-status">{{ lang.t('Ramadan 1448', 'К Рамадану 1448') }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teaser Actions -->
+        <div class="teaser-actions">
+          <a
+            href="https://t.me/tthisalina"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="primary-teaser-btn"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span>{{
+              lang.t('Follow Updates on Telegram', 'Следить за разработкой в Telegram')
+            }}</span>
+          </a>
+          <a
+            href="https://t.me/myramadan_tracker_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="secondary-teaser-btn glass-panel"
+          >
+            <span>{{ lang.t('Open Telegram Bot', 'Открыть Telegram-бота') }}</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile app concept preview -->
+      <aside class="teaser-visual" aria-labelledby="app-preview-title">
+        <div class="visual-topline">
+          <span class="visual-tag">{{ lang.t('MOBILE APP', 'МОБИЛЬНОЕ ПРИЛОЖЕНИЕ') }}</span>
+          <span class="visual-status"
+            ><span></span>{{ lang.t('In development', 'В разработке') }}</span
+          >
+        </div>
+        <div class="visual-intro">
+          <h3 id="app-preview-title" class="visual-heading">
+            {{ lang.t('Ramadan App', 'Приложение к Рамадану') }}
+          </h3>
+          <p class="visual-caption">
+            {{ lang.t('A little more intention. Every day.', 'День за днем') }}
+          </p>
+        </div>
+        <div class="phone-stage">
+          <span class="preview-orbit" aria-hidden="true"></span>
+          <span class="preview-star" aria-hidden="true">✦</span>
+          <div
+            class="app-phone"
+            role="img"
+            [attr.aria-label]="
+              lang.t(
+                'App concept: daily fasting, Quran and Taraweeh tracker',
+                'Концепт приложения: ежедневный трекер поста, Корана и таравиха'
+              )
+            "
+          >
+            <div class="phone-island" aria-hidden="true"></div>
+            <div class="phone-header"><span>Ramadan</span><span aria-hidden="true">☾</span></div>
+            <div class="phone-date">{{ lang.t('YOUR DAILY MOMENT', 'ТВОЙ ЕЖЕДНЕВНЫЙ РИТМ') }}</div>
+            <div class="phone-progress">
+              <svg viewBox="0 0 140 140" aria-hidden="true">
+                <circle class="progress-track" cx="70" cy="70" r="60" />
+                <circle class="progress-fill" cx="70" cy="70" r="60" />
+              </svg>
+              <div>
+                <span class="progress-moon" aria-hidden="true">☾</span
+                ><strong>{{ lang.t('Day 12', 'День 12') }}</strong
+                ><span>{{ lang.t('of 30 days', 'из 30 дней') }}</span>
+              </div>
+            </div>
+            <div class="phone-today">{{ lang.t('Today', 'Сегодня') }}<span>2 / 3</span></div>
+            <div class="phone-task">
+              <span class="task-check">✓</span><span>{{ lang.t('Fasting', 'Пост') }}</span
+              ><span class="task-detail">{{ lang.t('Done', 'Готово') }}</span>
+            </div>
+            <div class="phone-task">
+              <span class="task-check">✓</span><span>{{ lang.t('Quran', 'Коран') }}</span
+              ><span class="task-detail">{{ lang.t('10 pages', '10 страниц') }}</span>
+            </div>
+            <div class="phone-task">
+              <span class="task-check pending"></span
+              ><span>{{ lang.t('Taraweeh', 'Таравих') }}</span
+              ><span class="task-detail">{{ lang.t('Ahead', 'Впереди') }}</span>
+            </div>
+            <div class="phone-home-bar" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="visual-footer">
+          <div>
+            <span class="release-label">{{ lang.t('PLANNED RELEASE', 'ПЛАНИРУЕМЫЙ РЕЛИЗ') }}</span
+            ><span class="release-date">{{ lang.t('Ramadan 2027', 'Рамадан 2027') }}</span>
+          </div>
+          <span class="visual-platforms">iOS <span> / </span> Android</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Bottom Navigation Link -->
+  <div class="bottom-nav">
+    <a routerLink="/" class="back-home-btn glass-panel">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      <span>{{ lang.t('RETURN TO HOME', 'ВЕРНУТЬСЯ НА ГЛАВНУЮ') }}</span>
+    </a>
+  </div>
+</div>
