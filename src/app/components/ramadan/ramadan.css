@@ -2,6 +2,8 @@
   position: relative;
   width: 100%;
   max-width: 1200px;
+  /* Keep the decorative glows from extending the document's scrollable width. */
+  overflow-x: clip;
   margin: 0 auto;
   padding: 1.5rem 0 4rem;
 }

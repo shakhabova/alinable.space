@@ -91,8 +91,8 @@ export class RamadanShareCard {
       }
       text(isRu ? 'Пусть сердце будет готово' : 'May our hearts be ready', 1000, 'italic 35px Georgia');
       const target = this.ramadan.targetDate.toLocaleDateString(isRu ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-      text('≈ ' + target, 1628, '38px Georgia');
-      text(isRu ? 'Начало уточняется по наблюдению луны' : 'Start date depends on local moon sighting', 1674, '25px Arial', '#e0d2c5', 840);
+      text((isRu ? 'Ориентировочно · ' : 'Expected · ') + target, 1628, '28px Georgia');
+      text(isRu ? 'Дата зависит от наблюдения луны' : 'Date depends on local moon sighting', 1674, '20px Arial', '#e0d2c5', 840);
       ctx.strokeStyle = 'rgba(244, 224, 187, .25)';
       ctx.beginPath();
       ctx.moveTo(140, 1704);
