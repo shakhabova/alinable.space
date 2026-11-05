@@ -1,0 +1,26 @@
+<section id="share-card" class="share-section" aria-labelledby="share-title">
+  <div class="share-copy">
+    <p class="eyebrow">{{ lang.t('A LITTLE REMINDER TO SHARE', 'НАПОМИНАНИЕ, КОТОРЫМ ХОЧЕТСЯ ДЕЛИТЬСЯ') }}</p>
+    <h2 id="share-title">{{ lang.t('Share the anticipation', 'Поделитесь ожиданием') }}<br /><em>{{ lang.t('Bring someone closer', 'Вдохновите близких') }}</em></h2>
+    <div class="format-label"><span aria-hidden="true">▯</span> {{ lang.t('STORY · 9:16 · 1080 × 1920', 'СТОРИС · 9:16 · 1080 × 1920') }}</div>
+    <div class="actions">
+      <button type="button" class="primary" [disabled]="!file() || busy()" (click)="share()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></svg>
+        {{ busy() ? lang.t('Sharing…', 'Отправляем…') : lang.t('Share card', 'Поделиться карточкой') }}
+      </button>
+      <button type="button" class="secondary" [disabled]="!file() || busy()" (click)="download()">{{ lang.t('Download PNG', 'Скачать PNG') }} <span aria-hidden="true">↓</span></button>
+    </div>
+    <p class="hint">{{ lang.t('Share from your phone, or download the photo and upload it to your story. Add a link sticker so friends can make their own.', 'Отправьте с телефона или скачайте фото и загрузите в сторис. Добавьте стикер со ссылкой, чтобы друзья тоже создали свою карточку.') }}</p>
+    <button class="copy-link" type="button" (click)="copyLink()">{{ lang.t('Copy site link', 'Скопировать ссылку на сайт') }} <span aria-hidden="true">↗</span></button>
+    <p class="status" role="status">{{ message() }}</p>
+  </div>
+  <div class="preview-wrap" [attr.aria-busy]="!file() && !failed()">
+    <div class="photo-preview">
+      <canvas #cardCanvas role="img" [attr.aria-label]="started() ? lang.t('Ramadan is here', 'Рамадан наступил') : lang.t('Photo card: days until Ramadan — ', 'Фотокарточка: дней до Рамадана — ') + days()"></canvas>
+      @if (!file()) {
+        <div class="loading">{{ failed() ? lang.t('Preview unavailable', 'Предпросмотр недоступен') : lang.t('Creating your card…', 'Создаём вашу карточку…') }}</div>
+      }
+    </div>
+    <p class="preview-caption">{{ lang.t('YOUR STORY, A LITTLE MORE MEANINGFUL', 'ПУСТЬ В СТОРИС БУДЕТ ЧУТОЧКУ БОЛЬШЕ СМЫСЛА') }}</p>
+  </div>
+</section>
