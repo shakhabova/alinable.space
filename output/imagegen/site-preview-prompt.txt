@@ -1,0 +1,14 @@
+Generated with the built-in image_gen tool.
+Reference: public/bg-home.png
+Output: public/site-preview.png
+
+Use case: ads-marketing.
+Asset type: finished social sharing / Open Graph preview cover for the personal developer portfolio alinable.space.
+Primary request: Create an elegant premium landscape portfolio cover, approximately 1.91:1 aspect ratio, 1200x630 layout. Use the supplied site's existing background image as a visual reference for its cosmic black, charcoal, subtle lavender glow, fine elliptical orbital curves, sparse tiny stars and luminous planetary crescent aesthetic.
+Composition: quiet refined editorial typography on the left, luminous crescent planet and thin orbit on the right. Generous negative space, comfortable 65px safe margins, all text within the central 80% of the image. Text should dominate and remain legible as a small link preview. Near-black background, white and muted lavender type. Large high-contrast elegant serif name inspired by Cormorant Garamond, with clean small sans-serif supporting type inspired by Inter. Restrained and sophisticated.
+Render only this exact text with exact spelling:
+small upper-left: "FRONTEND DEVELOPER & SOFTWARE ENGINEER"
+very large two-line name: "Alina" then "Shakhabova"
+supporting sentence below name: "I build intelligent interfaces" then "and digital experiences"
+small bottom-left: "alinable.space"
+Constraints: final finished flat cover artwork, edge-to-edge, no outer mockup, no devices, no people, no portraits, no logos, no watermarks, no buttons, no extra words. Match the supplied reference's understated space atmosphere rather than a bright colorful galaxy.

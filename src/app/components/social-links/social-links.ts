@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-social-links',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './social-links.html',
   styleUrl: './social-links.css',
 })
-export class SocialLinks {}
+export class SocialLinks {
+  readonly lang = inject(LanguageService);
+}

@@ -1,0 +1,97 @@
+<section class="desk-page">
+  <header class="page-heading">
+    <svg class="cosmic-orbit" viewBox="0 0 240 200" fill="none" aria-hidden="true" focusable="false">
+      <circle cx="128" cy="100" r="48" />
+      <ellipse cx="128" cy="100" rx="104" ry="31" transform="rotate(-35 128 100)" />
+      <ellipse class="outer-orbit" cx="128" cy="100" rx="115" ry="78" transform="rotate(-35 128 100)" />
+      <circle class="orbit-moon" cx="207" cy="47" r="5" />
+      <path class="orbit-star" d="M41 37v14m-7-7h14M193 148v18m-9-9h18M78 166v8m-4-4h8" />
+      <circle class="orbit-star" cx="170" cy="24" r="1.5" /><circle class="orbit-star" cx="29" cy="115" r="1.5" />
+    </svg>
+    <p class="eyebrow">{{ lang.t('PERSONAL SPACE / SETUP 01', 'ЛИЧНОЕ ПРОСТРАНСТВО / СЕТАП 01') }}</p>
+    <h1>{{ lang.t('My workspace', 'Мой рабочий стол') }}<span class="title-dot">.</span></h1>
+    <p class="intro">{{ lang.t('A place for ideas, a few favourite things, and a very important coworker.', 'Место для идей, любимых вещей и одного очень важного коллеги.') }}</p>
+  </header>
+
+  <section class="setup" aria-labelledby="setup-title">
+    <div class="setup-topline"><h2 id="setup-title">{{ lang.t('THE SETUP', 'НА РАБОЧЕМ СТОЛЕ') }}</h2><span>{{ lang.t('A LITTLE TOUR', 'НЕБОЛЬШАЯ ЭКСКУРСИЯ') }}</span></div>
+    <div class="setup-grid">
+      <div class="photo-column">
+        <div class="photo-frame">
+          <div class="photo-toolbar"><span><span aria-hidden="true">⌖</span> {{ lang.t('WORKSPACE OVERVIEW', 'ОБЗОР РАБОЧЕГО МЕСТА') }}</span><span class="photo-mode"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>{{ lang.t('EXPLORE', 'ИССЛЕДОВАТЬ') }}</span></div>
+          <svg class="desk-photo" viewBox="0 310 960 970" [attr.aria-label]="lang.t('Interactive photo of my desk. Select an object to explore.', 'Интерактивное фото моего стола. Выберите предмет, чтобы узнать о нём.')">
+            <image href="/desk.png" width="960" height="1280" />
+            @for (item of photoItems; track item.id) {
+              <g class="photo-target" [class.is-active]="activeId() === item.id" tabindex="0" role="button"
+                [attr.aria-label]="lang.t(item.label.en, item.label.ru)" [attr.aria-pressed]="selectedId() === item.id"
+                aria-controls="desk-detail" (mouseenter)="previewId.set(item.id)" (mouseleave)="previewId.set(null)"
+                (focus)="previewId.set(item.id)" (blur)="previewId.set(null)" (click)="selectItem(item.id)"
+                (keydown.enter)="selectItem(item.id)" (keydown.space)="$event.preventDefault(); selectItem(item.id)">
+                <title>{{ lang.t(item.label.en, item.label.ru) }}</title>
+                <polygon [attr.points]="item.points" />
+                <circle class="pin-hit" [attr.cx]="item.x" [attr.cy]="item.y" r="28" />
+                <circle class="pin-halo" [attr.cx]="item.x" [attr.cy]="item.y" r="18" />
+                <circle class="pin" [attr.cx]="item.x" [attr.cy]="item.y" r="8" />
+              </g>
+            }
+          </svg>
+          <span class="photo-caption">{{ lang.t('MY DESK / A MOMENT AT HOME', 'МОЙ СТОЛ / МОМЕНТ ДОМА') }}</span>
+        </div>
+        <p class="photo-hint"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg> {{ lang.t('Hover or tap an object — or choose from the list.', 'Наведите на предмет или нажмите на него — либо выберите в списке.') }}</p>
+      </div>
+      <aside class="equipment" [attr.aria-label]="lang.t('Desk equipment', 'Предметы на столе')">
+        <p class="eyebrow">{{ lang.t('01 / EQUIPMENT INDEX', '01 / ОБОРУДОВАНИЕ') }}</p>
+        <p class="list-intro">{{ lang.t('The details', 'Всё по деталям') }}<span class="title-dot"> /</span></p>
+        <div class="equipment-list">
+          @for (item of items; track item.id; let i = $index) {
+            <button type="button" class="equipment-button" [class.is-active]="activeId() === item.id"
+              [attr.aria-pressed]="selectedId() === item.id" aria-controls="desk-detail"
+              (mouseenter)="previewId.set(item.id)" (mouseleave)="previewId.set(null)"
+              (focus)="previewId.set(item.id)" (blur)="previewId.set(null)" (click)="selectItem(item.id)">
+              <span class="item-number">{{ (i + 1).toString().padStart(2, '0') }}</span><span>{{ lang.t(item.label.en, item.label.ru) }}</span><svg class="ui-icon item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle class="selection-core" cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>
+            </button>
+          }
+        </div>
+      </aside>
+    </div>
+    <article id="desk-detail" class="item-detail" aria-live="polite" aria-atomic="true">
+      <div><p class="eyebrow">{{ lang.t(activeItem().label.en, activeItem().label.ru) }}</p><h3>{{ lang.t(activeItem().title.en, activeItem().title.ru) }}</h3>
+        @if (activeItem().product; as product) {
+          <div class="product-photo" [attr.data-product]="activeItem().id"><img [src]="product.photo" [alt]="lang.t(product.name.en, product.name.ru)" width="620" height="930" loading="lazy" /></div>
+        }
+      </div>
+      <div class="detail-body"><p class="detail-copy">{{ lang.t(activeItem().description.en, activeItem().description.ru) }}</p><div class="specs">@for (spec of activeItem().specs; track spec.en) {<span>{{ lang.t(spec.en, spec.ru) }}</span>}</div>
+      @if (activeItem().id === 'keyboard') {<button type="button" class="collection-link" (click)="keyboardCollection.scrollIntoView({ block: 'start' })"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 9h1m4 0h1m4 0h1M6 12h1m4 0h1m4 0h1M8 16h8"/></svg>{{ lang.t('Explore the keyboards', 'Посмотреть клавиатуры') }}</button>}</div>
+    </article>
+  </section>
+
+  <section #keyboardCollection class="keyboard-section" id="keyboards" aria-labelledby="keyboards-title">
+    <div class="collection-heading"><div><p class="eyebrow" id="keyboards-title">{{ lang.t('A SMALL COLLECTION', 'НЕБОЛЬШАЯ КОЛЛЕКЦИЯ') }}</p></div></div>
+    <div class="keyboard-choices" [attr.aria-label]="lang.t('Choose a keyboard', 'Выберите клавиатуру')">
+      @for (keyboard of keyboards; track keyboard.id) {
+        <button type="button" class="keyboard-choice" [class.is-selected]="selectedKeyboardId() === keyboard.id" [attr.aria-pressed]="selectedKeyboardId() === keyboard.id" aria-controls="keyboard-detail" (click)="selectedKeyboardId.set(keyboard.id)">
+          <span>{{ lang.t(keyboard.role.en, keyboard.role.ru) }}</span><strong>{{ lang.t(keyboard.name.en, keyboard.name.ru) }}</strong><svg class="ui-icon choice-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 9h1m4 0h1m4 0h1M6 12h1m4 0h1m4 0h1M8 16h8"/></svg>
+        </button>
+      }
+    </div>
+    <article class="keyboard-detail" id="keyboard-detail" aria-live="polite" aria-atomic="true">
+      <div class="keyboard-visual" [class.catalog-photo]="!!activeKeyboard().photo" [attr.data-photo-fit]="activeKeyboard().photoFit ?? 'contain'" [attr.data-theme]="activeKeyboard().theme">
+        @if (activeKeyboard().photo; as photo) {
+          <img [src]="photo" [alt]="lang.t(activeKeyboard().name.en, activeKeyboard().name.ru)" [style.object-position]="activeKeyboard().photoPosition ?? 'center'" loading="lazy" />
+        } @else {
+          <div class="keyboard-drawing" aria-hidden="true">@for (key of keys; track $index) {<i></i>}</div>
+          <span class="placeholder-label">{{ lang.t('ILLUSTRATION / PHOTO COMING SOON', 'ИЛЛЮСТРАЦИЯ / ФОТО ПОЯВИТСЯ ПОЗЖЕ') }}</span>
+        }
+      </div>
+      <div class="keyboard-story"><p class="eyebrow">{{ lang.t(activeKeyboard().role.en, activeKeyboard().role.ru) }}</p><h3>{{ lang.t(activeKeyboard().name.en, activeKeyboard().name.ru) }}</h3><p>{{ lang.t(activeKeyboard().description.en, activeKeyboard().description.ru) }}</p><div class="specs">@for (spec of activeKeyboard().specs; track spec.en) {<span>{{ lang.t(spec.en, spec.ru) }}</span>}</div>
+      </div>
+    </article>
+  </section>
+</section>
+
+
+
+
+
+
+

@@ -544,16 +544,17 @@
   }
 }
 
-/* Brand / Landing: wide presentation mockups, continuous Ken Burns pan */
+/* Brand / Landing: scroll vertically using the same motion as fintech. */
 .cat-brand .project-img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: calc(100% + 40px);
   display: block;
   object-fit: cover;
   object-position: top center;
-  transform-origin: center;
-  animation: brand-kenburns 20s ease-in-out infinite;
+  animation: auto-scroll 20s ease-in-out infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .theme-asa .project-img {
@@ -562,32 +563,16 @@
 
 .theme-doula .project-img {
   animation-duration: 22s;
-  animation-direction: reverse;
 }
 
 .theme-zarema .project-img {
   animation-duration: 26s;
 }
 
-/* Base scale keeps the crop inside the frame so the pan never reveals edges */
-@keyframes brand-kenburns {
-  0% {
-    transform: scale(1.05) translate(0, 0);
-  }
-
-  50% {
-    transform: scale(1.14) translate(-1.5%, -3%);
-  }
-
-  100% {
-    transform: scale(1.05) translate(0, 0);
-  }
-}
-
 @media (hover: hover) {
 
-  .showcase-row:hover .cat-fintech .project-img,
-  .showcase-row:hover .cat-brand .project-img {
+  .showcase-row.cat-fintech:hover .project-img,
+  .showcase-row.cat-brand:hover .project-img {
     animation-play-state: paused;
   }
 }

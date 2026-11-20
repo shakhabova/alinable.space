@@ -119,7 +119,7 @@ export class Portfolio {
       tagsRu: ['Дети и образование', 'Лендинг', 'Запись онлайн', 'Отзывчивый UI'],
       themeClass: 'theme-asa',
       category: 'brand',
-      image: '/landing2.JPG',
+      image: '/landing2-1448x1086.png',
       domain: 'montessorigrozny.ru',
     },
     {
@@ -134,7 +134,7 @@ export class Portfolio {
       tagsRu: ['Личный бренд', 'Лендинг', 'Интерактивный калькулятор', 'Отзывчивый UI'],
       themeClass: 'theme-mali',
       category: 'brand',
-      image: '/landing1.PNG',
+      image: '/landing1-1448x1086.png',
       domain: 'malicreates.pro',
     },
     {
@@ -149,7 +149,7 @@ export class Portfolio {
       tagsRu: ['Личный бренд', 'Лендинг', 'Спокойный дизайн', 'Отзывчивый UI'],
       themeClass: 'theme-doula',
       category: 'brand',
-      image: '/landing3.JPG',
+      image: '/landing3-1448x1086.png',
       domain: 'alsu-hakim.com',
     },
     {
@@ -164,7 +164,7 @@ export class Portfolio {
       tagsRu: ['Личный бренд', 'Лендинг', 'Отзывчивый UI'],
       themeClass: 'theme-zarema',
       category: 'brand',
-      image: '/landing4.PNG',
+      image: '/landing4-1448x1086.png',
       domain: 'zulaeva.ru',
     },
   ];

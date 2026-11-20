@@ -8,6 +8,7 @@ import { About } from './components/about/about';
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'about', component: About },
+  { path: 'desk', title: 'Desk · Alina Shakhabova', loadComponent: () => import('./components/desk/desk').then(m => m.Desk) },
   { path: 'portfolio', component: Portfolio },
   { path: 'ramadan', loadComponent: () => import('./components/ramadan/ramadan').then(m => m.Ramadan) },
   // Temporarily hidden; keep the page component for later restoration.
