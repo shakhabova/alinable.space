@@ -1,16 +1,18 @@
 <section class="desk-page">
   <header class="page-heading">
-    <svg class="cosmic-orbit" viewBox="0 0 240 200" fill="none" aria-hidden="true" focusable="false">
-      <circle cx="128" cy="100" r="48" />
-      <ellipse cx="128" cy="100" rx="104" ry="31" transform="rotate(-35 128 100)" />
-      <ellipse class="outer-orbit" cx="128" cy="100" rx="115" ry="78" transform="rotate(-35 128 100)" />
-      <circle class="orbit-moon" cx="207" cy="47" r="5" />
-      <path class="orbit-star" d="M41 37v14m-7-7h14M193 148v18m-9-9h18M78 166v8m-4-4h8" />
-      <circle class="orbit-star" cx="170" cy="24" r="1.5" /><circle class="orbit-star" cx="29" cy="115" r="1.5" />
+    <div class="heading-topline">
+      <span class="heading-index">{{ lang.t('SETUP', 'СЕТАП') }} / 01</span>
+    </div>
+    <h1>{{ lang.t('My', 'Мой рабочий') }} <em>{{ lang.t('workspace', 'стол') }}</em><span class="title-dot"></span></h1>
+    <svg class="cosmic-orbit" viewBox="0 0 200 150" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="100" cy="75" r="40" />
+        <ellipse cx="100" cy="75" rx="86" ry="24" transform="rotate(-28 100 75)" />
+        <circle class="orbit-moon" cx="168" cy="40" r="4" />
+        <path class="orbit-star" d="M30 27v10m-5-5h10M160 114v10m-5-5h10" />
     </svg>
-    <p class="eyebrow">{{ lang.t('PERSONAL SPACE / SETUP 01', 'ЛИЧНОЕ ПРОСТРАНСТВО / СЕТАП 01') }}</p>
-    <h1>{{ lang.t('My workspace', 'Мой рабочий стол') }}<span class="title-dot">.</span></h1>
-    <p class="intro">{{ lang.t('A place for ideas, a few favourite things, and a very important coworker.', 'Место для идей, любимых вещей и одного очень важного коллеги.') }}</p>
+    <div class="heading-note">
+      <p class="intro">{{ lang.t('A place for ideas, a few favourite things, and a very important coworker', 'Место для идей, любимых вещей и одного очень важного коллеги') }}</p>
+    </div>
   </header>
 
   <section class="setup" aria-labelledby="setup-title">
@@ -18,7 +20,7 @@
     <div class="setup-grid">
       <div class="photo-column">
         <div class="photo-frame">
-          <div class="photo-toolbar"><span><span aria-hidden="true">⌖</span> {{ lang.t('WORKSPACE OVERVIEW', 'ОБЗОР РАБОЧЕГО МЕСТА') }}</span><span class="photo-mode"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>{{ lang.t('EXPLORE', 'ИССЛЕДОВАТЬ') }}</span></div>
+          <div class="photo-toolbar"><span>{{ lang.t('WORKSPACE OVERVIEW', 'ОБЗОР РАБОЧЕГО МЕСТА') }}</span><span class="photo-mode"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>{{ lang.t('EXPLORE', 'ИССЛЕДОВАТЬ') }}</span></div>
           <svg class="desk-photo" viewBox="0 310 960 970" [attr.aria-label]="lang.t('Interactive photo of my desk. Select an object to explore.', 'Интерактивное фото моего стола. Выберите предмет, чтобы узнать о нём.')">
             <image href="/desk.png" width="960" height="1280" />
             @for (item of photoItems; track item.id) {

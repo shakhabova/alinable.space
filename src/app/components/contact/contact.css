@@ -315,6 +315,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  .contact-page {
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+}
+
 @media (max-width: 480px) {
   .contact-card {
     padding: 2.5rem 1.5rem;

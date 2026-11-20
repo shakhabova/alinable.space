@@ -679,6 +679,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .portfolio-page {
+    padding-top: 1rem;
+  }
+}
+
 @media (max-width: 480px) {
   .portfolio-page {
     --frame-body-height: 208px;

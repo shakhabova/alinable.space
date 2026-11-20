@@ -1064,6 +1064,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .galaxy-page {
+    padding-top: 1rem;
+  }
+}
+
 @media (max-width: 620px) {
   .constellation {
     max-width: 360px;

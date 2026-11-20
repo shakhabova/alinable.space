@@ -1598,6 +1598,7 @@
 
 @media (max-width: 768px) {
   .about-page {
+    padding-top: 1rem;
     gap: 4rem;
   }
 
