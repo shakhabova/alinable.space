@@ -9,7 +9,7 @@
         {{ busy() ? lang.t('Sharing…', 'Отправляем…') : lang.t('Share card', 'Поделиться карточкой') }}
       </button>
       <button type="button" class="secondary" [disabled]="!file() || busy()" (click)="download()">{{ lang.t('Download PNG', 'Скачать PNG') }} <span aria-hidden="true">↓</span></button>
-    </div>
+    </div> 
     <p class="hint">{{ lang.t('Share from your phone, or download the photo and upload it to your story. Add a link sticker so friends can make their own.', 'Отправьте с телефона или скачайте фото и загрузите в сторис. Добавьте стикер со ссылкой, чтобы друзья тоже создали свою карточку.') }}</p>
     <button class="copy-link" type="button" (click)="copyLink()">{{ lang.t('Copy site link', 'Скопировать ссылку на сайт') }}</button>
     <p class="status" role="status">{{ message() }}</p>
@@ -21,5 +21,6 @@
         <div class="loading">{{ failed() ? lang.t('Preview unavailable', 'Предпросмотр недоступен') : lang.t('Creating your card…', 'Создаём вашу карточку…') }}</div>
       }
     </div>
+    <p class="preview-caption">{{ lang.t('YOUR STORY, A LITTLE MORE MEANINGFUL', 'ПУСТЬ В СТОРИС БУДЕТ ЧУТОЧКУ БОЛЬШЕ СМЫСЛА') }}</p>
   </div>
 </section>
