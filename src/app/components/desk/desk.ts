@@ -10,8 +10,7 @@ import { DESK_ITEMS, KEYBOARDS } from './desk.data';
 })
 export class Desk {
   readonly lang = inject(LanguageService);
-  // Temporarily hide the laptop from both the equipment list and photo targets.
-  readonly items = DESK_ITEMS.filter(item => item.id !== 'laptop');
+  readonly items = DESK_ITEMS;
   readonly photoItems = [...this.items].sort((a, b) => (a.layer ?? 0) - (b.layer ?? 0));
   readonly keyboards = KEYBOARDS;
   readonly keys = Array.from({ length: 60 });

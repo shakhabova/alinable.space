@@ -58,7 +58,7 @@ describe('Desk interactions', () => {
     expect(labels.indexOf('Коврик на столе')).toBeLessThan(labels.indexOf('Подставка под запястья'));
   });
 
-  for (const label of ['Стол', 'Микрофон', 'Наушники', 'Коврик на столе', 'Подставка под запястья', 'Читалка Kindle']) {
+  for (const label of ['Ноутбук', 'Стол', 'Микрофон', 'Наушники', 'Коврик на столе', 'Подставка под запястья', 'Читалка Kindle']) {
     it(`synchronizes photo and list selection for ${label}`, async () => {
       const target = root.querySelector(`.photo-target[aria-label="${label}"]`)!;
       target.dispatchEvent(new MouseEvent('mouseenter'));
@@ -74,7 +74,7 @@ describe('Desk interactions', () => {
   }
 
   it('shows product photos and descriptions without shop links', async () => {
-    for (const id of ['monitor', 'portrait', 'kindle', 'headphones', 'microphone', 'mouse', 'desk-mat', 'wrist-rest', 'keyboard']) {
+    for (const id of ['laptop', 'monitor', 'portrait', 'kindle', 'headphones', 'microphone', 'mouse', 'desk-mat', 'wrist-rest', 'keyboard']) {
       fixture.componentInstance.selectItem(id);
       await fixture.whenStable();
       const product = fixture.componentInstance.activeItem().product!;

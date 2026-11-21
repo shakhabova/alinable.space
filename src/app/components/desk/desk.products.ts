@@ -31,6 +31,19 @@ export const DESK_PRODUCTS: Readonly<Record<string, DeskProduct>> = {
     url: 'https://ikea-39.ru/catalog/item/39584930',
   },
   monitor: SAMSUNG_MONITOR,
+  laptop: {
+    name: { en: 'Lenovo Yoga Slim 7 14ARE05', ru: 'Lenovo Yoga Slim 7 14ARE05' },
+    description: {
+      en: 'A 14-inch laptop with a Full HD IPS display and an AMD Ryzen processor.',
+      ru: '14-дюймовый ноутбук с Full HD IPS-экраном и процессором AMD Ryzen.',
+    },
+    // Only shared model specifications: the exact CPU, RAM and SSD capacity are not confirmed.
+    specs: [{ en: '14-inch · IPS', ru: '14 дюймов · IPS' }, { en: 'Full HD · 1920 × 1080', ru: 'Full HD · 1920 × 1080' }, { en: 'AMD Ryzen', ru: 'AMD Ryzen' }],
+    // Product photo: https://www.digitec.ch/en/s1/product/lenovo-yoga-slim-7-14are05-14-512-gb-8-gb-ch-amd-ryzen-5-4500u-notebooks-13088789
+    photo: '/desk-products/lenovo-yoga-slim-7-14are05.jpg',
+    url: 'https://psref.lenovo.com/syspool/Sys/PDF/Yoga/Yoga_Slim_7_14ARE05/Yoga_Slim_7_14ARE05_Spec.PDF',
+    linkLabel: { en: 'Specifications · Lenovo', ru: 'Характеристики · Lenovo' },
+  },
   portrait: {
     ...SAMSUNG_MONITOR,
     description: {
